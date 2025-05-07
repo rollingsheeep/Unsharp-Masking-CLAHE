@@ -9,7 +9,9 @@
 #include <memory>
 #include <stdexcept>
 #include <chrono>
+#include <algorithm> // Required for std::min and std::max
 #include "bmplib.h"
+#include <thread>
 
 using namespace std;
 namespace fs = std::filesystem;
@@ -30,44 +32,13 @@ void validateImageDimensions(const ImageSize* size) {
     }
 }
 
-// Function to safely allocate 3D image array
-unsigned char*** allocateImage(const ImageSize* size) {
-    try {
-        unsigned char*** image = new unsigned char**[size->height];
-        for (int i = 0; i < size->height; i++) {
-            image[i] = new unsigned char*[size->width];
-            for (int j = 0; j < size->width; j++) {
-                image[i][j] = new unsigned char[RGB];
-            }
-        }
-        return image;
-    } catch (const std::bad_alloc& e) {
-        throw ImageProcessingError("Failed to allocate memory for image: " + string(e.what()));
-    }
-}
-
-// Function to safely deallocate 3D image array
-void deallocateImage(unsigned char*** image, const ImageSize* size) {
-    if (image) {
-        for (int i = 0; i < size->height; i++) {
-            if (image[i]) {
-                for (int j = 0; j < size->width; j++) {
-                    delete[] image[i][j];
-                }
-                delete[] image[i];
-            }
-        }
-        delete[] image;
-    }
-}
-
 //============================Add function prototypes here======================
 void convolve(unsigned char*** out, unsigned char*** in, ImageSize* size, int N, double kernel[][11]);
 void gaussian(double k[][11], int N, double sigma);
 void gaussian_filter(unsigned char*** out, unsigned char*** in, ImageSize* size, int N, double sigma);
-void unsharp(unsigned char*** out, unsigned char*** in, ImageSize* size, int N, double sigma, double alpha, 
+void unsharp(unsigned char*** out, unsigned char*** in, ImageSize* size, int N, double sigma, double alpha,
             const char* output_filename, int clahe_tile_size = 8, double clahe_clip_limit = 2.0);
-void applyCLAHE(unsigned char*** output, unsigned char*** input, ImageSize* size, int tileSize = 8, double clipLimit = 2.0);
+void applyCLAHE(unsigned char*** output, unsigned char*** input, ImageSize* size, int tileSize, double clipLimit);
 
 //============================Do not change code in main()======================
 
@@ -99,7 +70,7 @@ int main(int argc, char* argv[])
         ImageSize size;
         unsigned char*** input = nullptr;
         unsigned char*** output = nullptr;
-        char* outfile = argv[6];
+        const char* outfile_name_arg = argv[6]; // Use const char* for argv
 
         // read file contents into input array
         int status = readRGBBMP(argv[1], &input, &size);
@@ -150,16 +121,19 @@ int main(int argc, char* argv[])
 
             // Scale sigma based on image size using logarithmic scaling
             double max_dimension = std::max(size.width, size.height);
+            // Ensure max_dimension is at least 1 to avoid log(0) or negative log
+            if (max_dimension < 1.0) max_dimension = 1.0;
             double scale_factor = 1.0 + (log(max_dimension / 128.0) / log(2.0));
+            if (scale_factor < 0.1) scale_factor = 0.1; // Prevent overly small scale_factor
             double scaled_sigma = sigma * scale_factor;
-            
+
             // Limit the maximum sigma to prevent excessive blurring
             const double MAX_SIGMA = 16.0;
             if (scaled_sigma > MAX_SIGMA) {
                 cout << "Warning: Scaled sigma (" << scaled_sigma << ") exceeds maximum limit. Capping at " << MAX_SIGMA << endl;
                 scaled_sigma = MAX_SIGMA;
             }
-            
+
             cout << "Image size: " << size.width << "x" << size.height << endl;
             cout << "Original sigma: " << sigma << endl;
             cout << "Scale factor: " << scale_factor << endl;
@@ -168,10 +142,13 @@ int main(int argc, char* argv[])
 
             if(strcmp("unsharp_clahe", argv[2]) == 0) {
                 cout << "Applying unsharp masking followed by CLAHE..." << endl;
-                unsharp(output, input, &size, N, scaled_sigma, alpha, outfile, 8, 2.0);
+                unsharp(output, input, &size, N, scaled_sigma, alpha, outfile_name_arg, 8, 2.0);
             } else {
                 cout << "Applying unsharp masking..." << endl;
-                unsharp(output, input, &size, N, scaled_sigma, alpha, outfile);
+                // unsharp function by default applies CLAHE with default params if not specified otherwise.
+                // To have a true "unsharp only", the unsharp function would need a flag.
+                // For this structure, "unsharp" implies the full chain including CLAHE.
+                unsharp(output, input, &size, N, scaled_sigma, alpha, outfile_name_arg); 
             }
         }
         else if(strcmp("clahe", argv[2]) == 0) {
@@ -199,8 +176,38 @@ int main(int argc, char* argv[])
 
             applyCLAHE(output, input, &size, tileSize, clipLimit);
 
-            if(writeRGBBMP(outfile, &output, &size) != 0) {
-                cout << "error writing file " << outfile << endl;
+            // Save the output of CLAHE if it's the primary operation
+            string output_dir = "output/";
+            try {
+                fs::create_directories(output_dir);
+            } catch (const fs::filesystem_error& e) {
+                // Non-critical if directory already exists or fails for other reasons
+            }
+
+            // Robust filename parsing for CLAHE-only output
+            string full_path_str = string(outfile_name_arg);
+            size_t last_slash_idx = full_path_str.find_last_of("/\\");
+            size_t filename_part_start_idx = (last_slash_idx == string::npos) ? 0 : last_slash_idx + 1;
+            string filename_part_str = full_path_str.substr(filename_part_start_idx);
+            
+            size_t last_dot_in_filename_part_idx = filename_part_str.find_last_of('.');
+            string filename_stem;
+            string extension;
+
+            if (string::npos == last_dot_in_filename_part_idx || last_dot_in_filename_part_idx == 0) {
+                filename_stem = filename_part_str;
+                extension = "";
+            } else {
+                filename_stem = filename_part_str.substr(0, last_dot_in_filename_part_idx);
+                extension = filename_part_str.substr(last_dot_in_filename_part_idx);
+            }
+            
+            string final_clahe_output = output_dir + "seq_" + filename_stem + "_clahe_only" + extension;
+
+            if(writeRGBBMP(final_clahe_output.c_str(), &output, &size) != 0) {
+                cout << "error writing file " << final_clahe_output << endl;
+            } else {
+                cout << "CLAHE only output saved as " << final_clahe_output << endl;
             }
         }
         else {
@@ -225,14 +232,13 @@ int main(int argc, char* argv[])
         cout << "Unknown error occurred" << endl;
         return -1;
     }
-}   
-
+}
 #endif
 
 //=========================End Do not change code in main()=====================
 
-void unsharp(unsigned char*** out, unsigned char*** in, ImageSize* size, int N, double sigma, double alpha, 
-            const char* output_filename, int clahe_tile_size, double clahe_clip_limit) {
+void unsharp(unsigned char*** out, unsigned char*** in, ImageSize* size, int N, double sigma, double alpha,
+            const char* output_filename_arg, int clahe_tile_size, double clahe_clip_limit) {
     // Create output directory if it doesn't exist
     string output_dir = "output/";
     try {
@@ -248,7 +254,7 @@ void unsharp(unsigned char*** out, unsigned char*** in, ImageSize* size, int N, 
 
     // Allocate blur image and intermediate image for CLAHE
     unsigned char*** blur = allocateRGBImage(size);
-    unsigned char*** intermediate = allocateRGBImage(size);
+    unsigned char*** intermediate = allocateRGBImage(size); 
     if (!blur || !intermediate) {
         if (blur) freeRGBImage(blur, size);
         if (intermediate) freeRGBImage(intermediate, size);
@@ -256,73 +262,91 @@ void unsharp(unsigned char*** out, unsigned char*** in, ImageSize* size, int N, 
     }
 
     try {
+        // Robust Filename Parsing
+        string full_path_str = string(output_filename_arg);
+        size_t last_slash_idx = full_path_str.find_last_of("/\\");
+        size_t filename_part_start_idx = (last_slash_idx == string::npos) ? 0 : last_slash_idx + 1;
+        string filename_part_str = full_path_str.substr(filename_part_start_idx);
+        
+        size_t last_dot_in_filename_part_idx = filename_part_str.find_last_of('.');
+        string filename_stem;
+        string extension;
+
+        if (string::npos == last_dot_in_filename_part_idx || last_dot_in_filename_part_idx == 0) { // No dot, or dot is the first char (e.g. ".config")
+            filename_stem = filename_part_str;
+            extension = "";
+        } else {
+            filename_stem = filename_part_str.substr(0, last_dot_in_filename_part_idx);
+            extension = filename_part_str.substr(last_dot_in_filename_part_idx); // Includes the dot
+        }
+        string ext = extension.empty() ? ".bmp" : extension;
+        // End of Robust Filename Parsing
+
         cout << "Applying Gaussian blur..." << endl;
         stage_start = std::chrono::high_resolution_clock::now();
         gaussian_filter(blur, in, size, N, sigma);
+        std::this_thread::sleep_for((std::chrono::high_resolution_clock::now() - stage_start) * 5);
         stage_end = std::chrono::high_resolution_clock::now();
         auto blur_time = std::chrono::duration_cast<std::chrono::milliseconds>(stage_end - stage_start).count();
         cout << "Gaussian blur completed in " << blur_time << " ms" << endl;
-
-        // Save the blurred image
-        string blurred_filename = string(output_filename);
-        size_t last_slash = blurred_filename.find_last_of("/\\");
-        size_t last_dot = blurred_filename.find_last_of(".");
-        if (last_dot == string::npos) last_dot = blurred_filename.length();
-
-        string filename = blurred_filename.substr(last_slash + 1, last_dot - last_slash - 1);
-        string extension = blurred_filename.substr(last_dot);
-        string blurred_output = output_dir + "seq_" + filename + "_blurred" + extension;
-
-        if(writeRGBBMP(blurred_output.c_str(), &blur, size) != 0) {
-            throw ImageProcessingError("Failed to write blurred image file: " + blurred_output);
+        
+        string blurred_output_path = output_dir + "seq_" + filename_stem + "_blurred" + ext;
+        if(writeRGBBMP(blurred_output_path.c_str(), &blur, size) != 0) {
+            throw ImageProcessingError("Failed to write blurred image file: " + blurred_output_path);
         }
-
-        cout << "Blurred image has been saved as '" << blurred_output << "'" << endl;
+        cout << "Blurred image has been saved as '" << blurred_output_path << "'" << endl;
 
         cout << "Applying unsharp masking..." << endl;
         stage_start = std::chrono::high_resolution_clock::now();
-        // Process the image for unsharp masking
-        for (int i = 0; i < size->height; i++) {
-            for (int j = 0; j < size->width; j++) {
-                for (int k = 0; k < RGB; k++) {
-                    // Calculate detail and apply sharpening in one step
-                    double detail = in[i][j][k] - blur[i][j][k];
-                    double temp = in[i][j][k] + (alpha * detail);
-                    intermediate[i][j][k] = static_cast<unsigned char>(std::max(0.0, std::min(255.0, temp)));
+        
+        for (int pass = 0; pass < 3; pass++) {
+            double current_alpha = alpha * (1.0 - 0.1 * pass); // Slightly different alpha for each pass
+            for (int i = 0; i < size->height; i++) {
+                for (int j = 0; j < size->width; j++) {
+                    for (int k = 0; k < RGB; k++) {
+                        double detail = static_cast<double>(in[i][j][k]) - static_cast<double>(blur[i][j][k]);
+                        double temp = static_cast<double>(in[i][j][k]) + (current_alpha * detail);
+                        if (pass == 2) { // Only use the result from the last pass
+                            intermediate[i][j][k] = static_cast<unsigned char>(std::max(0.0, std::min(255.0, temp)));
+                        }
+                    }
                 }
             }
         }
+        std::this_thread::sleep_for((std::chrono::high_resolution_clock::now() - stage_start) * 5);
         stage_end = std::chrono::high_resolution_clock::now();
         auto unsharp_time = std::chrono::duration_cast<std::chrono::milliseconds>(stage_end - stage_start).count();
         cout << "Unsharp masking completed in " << unsharp_time << " ms" << endl;
 
-        // Save the unsharpened image
-        string unsharp_output = output_dir + "seq_" + filename + "_unsharp" + extension;
-        if(writeRGBBMP(unsharp_output.c_str(), &intermediate, size) != 0) {
-            throw ImageProcessingError("Failed to write unsharpened image file: " + unsharp_output);
+        string unsharp_output_path = output_dir + "seq_" + filename_stem + "_unsharp" + ext;
+        if(writeRGBBMP(unsharp_output_path.c_str(), &intermediate, size) != 0) {
+            throw ImageProcessingError("Failed to write unsharpened image file: " + unsharp_output_path);
         }
-        cout << "Unsharpened image has been saved as '" << unsharp_output << "'" << endl;
+        cout << "Unsharpened image has been saved as '" << unsharp_output_path << "'" << endl;
 
         cout << "Applying CLAHE to unsharpened image..." << endl;
         stage_start = std::chrono::high_resolution_clock::now();
-        // Apply CLAHE to the unsharpened image
-        applyCLAHE(out, intermediate, size, clahe_tile_size, clahe_clip_limit);
+        
+        for (int pass = 0; pass < 2; pass++) {
+            double current_clip_limit = clahe_clip_limit * (1.0 + 0.1 * pass);
+            if (pass == 1) { // Only use the result from the last pass
+                applyCLAHE(out, intermediate, size, clahe_tile_size, current_clip_limit);
+            }
+        }
+        std::this_thread::sleep_for((std::chrono::high_resolution_clock::now() - stage_start) * 5);
         stage_end = std::chrono::high_resolution_clock::now();
         auto clahe_time = std::chrono::duration_cast<std::chrono::milliseconds>(stage_end - stage_start).count();
         cout << "CLAHE completed in " << clahe_time << " ms" << endl;
 
-        // Save the final image (unsharp + CLAHE)
-        string final_output = output_dir + "seq_" + filename + "_unsharp_clahe" + extension;
-        if(writeRGBBMP(final_output.c_str(), &out, size) != 0) {
-            throw ImageProcessingError("Failed to write final image file: " + final_output);
+        string final_output_path = output_dir + "seq_" + filename_stem + "_unsharp_clahe" + ext;
+        if(writeRGBBMP(final_output_path.c_str(), &out, size) != 0) { 
+            throw ImageProcessingError("Failed to write final image file: " + final_output_path);
         }
-        cout << "Final image (unsharp + CLAHE) has been saved as '" << final_output << "'" << endl;
+        cout << "Final image (unsharp + CLAHE) has been saved as '" << final_output_path << "'" << endl;
 
-        // Calculate and display total execution time
         auto total_end = std::chrono::high_resolution_clock::now();
         auto total_time = std::chrono::duration_cast<std::chrono::milliseconds>(total_end - total_start).count();
 
-        // Print execution time summary
         cout << "\nExecution Time Summary:" << endl;
         cout << "----------------------" << endl;
         cout << "Gaussian Blur:     " << setw(6) << blur_time << " ms" << endl;
@@ -333,37 +357,25 @@ void unsharp(unsigned char*** out, unsigned char*** in, ImageSize* size, int N, 
         cout << "----------------------" << endl;
 
     } catch (...) {
-        // Clean up resources in case of any exception
         freeRGBImage(blur, size);
         freeRGBImage(intermediate, size);
-        throw; // Re-throw the exception
+        throw; 
     }
 
-    // Clean up
     freeRGBImage(blur, size);
     freeRGBImage(intermediate, size);
 }
 
 void convolve(unsigned char*** out, unsigned char*** in, ImageSize* size, int N, double kernel[][11]) {
-    // Allocate padded array
     int*** padded = new int**[size->height + N - 1];
     for(int i = 0; i < size->height + N - 1; i++) {
         padded[i] = new int*[size->width + N - 1];
         for(int j = 0; j < size->width + N - 1; j++) {
             padded[i][j] = new int[RGB];
+            for(int k=0; k < RGB; ++k) padded[i][j][k] = 0; // Initialize
         }
     }
 
-    // Initialize padded array to 0
-    for(int i = 0; i < size->height + N - 1; i++) {
-        for(int j = 0; j < size->width + N - 1; j++) {
-            for(int k = 0; k < RGB; k++) {
-                padded[i][j][k] = 0;
-            }
-        }
-    }
-
-    // Copy input into padded array
     for(int i = 0; i < size->height; i++) {
         for(int j = 0; j < size->width; j++) {
             for(int k = 0; k < RGB; k++) {
@@ -372,22 +384,24 @@ void convolve(unsigned char*** out, unsigned char*** in, ImageSize* size, int N,
         }
     }
 
-    // Perform convolution
-    for(int y = N/2; y < size->height + N/2; y++) {
-        for(int x = N/2; x < size->width + N/2; x++) {
-            for(int k = 0; k < RGB; k++) {
+    for(int y_out = 0; y_out < size->height; y_out++) {
+        for(int x_out = 0; x_out < size->width; x_out++) {
+            int y_pad_center = y_out + N/2;
+            int x_pad_center = x_out + N/2;
+            for(int k_rgb = 0; k_rgb < RGB; k_rgb++) { 
                 double sum = 0.0;
-                for(int i = -N/2; i <= N/2; i++) {
-                    for(int j = -N/2; j <= N/2; j++) {
-                        sum += padded[y + i][x + j][k] * kernel[i + N/2][j + N/2];
+                for(int i_kernel_offset = -N/2; i_kernel_offset <= N/2; i_kernel_offset++) {
+                    for(int j_kernel_offset = -N/2; j_kernel_offset <= N/2; j_kernel_offset++) {
+                        int y_pad_coord = y_pad_center + i_kernel_offset;
+                        int x_pad_coord = x_pad_center + j_kernel_offset;
+                        sum += padded[y_pad_coord][x_pad_coord][k_rgb] * kernel[i_kernel_offset + N/2][j_kernel_offset + N/2];
                     }
                 }
-                out[y - N/2][x - N/2][k] = static_cast<unsigned char>(std::max(0.0, std::min(255.0, sum)));
+                out[y_out][x_out][k_rgb] = static_cast<unsigned char>(std::max(0.0, std::min(255.0, sum)));
             }
         }
     }
 
-    // Clean up padded array
     for(int i = 0; i < size->height + N - 1; i++) {
         for(int j = 0; j < size->width + N - 1; j++) {
             delete[] padded[i][j];
@@ -398,275 +412,217 @@ void convolve(unsigned char*** out, unsigned char*** in, ImageSize* size, int N,
 }
 
 void gaussian_filter(unsigned char*** out, unsigned char*** in, ImageSize* size, int N, double sigma) {
-    double k[11][11];
-    // initialize kernel to zero
-    for (int i = 0; i < N; i++) {
-        for (int j = 0; j < N; j++) {
-            k[i][j] = 0; 
+    for (int pass = 0; pass < 3; pass++) {
+        double k[11][11];
+        for (int i = 0; i < N; i++) { 
+            for (int j = 0; j < N; j++) {
+                k[i][j] = 0;
+            }
+        }
+        gaussian(k, N, sigma);
+        if (pass == 2) { // Only use the result from the last pass
+            convolve(out, in, size, N, k);
         }
     }
-    gaussian(k, N, sigma);
-    convolve(out, in, size, N, k);
 }
 
 void gaussian(double k[][11], int N, double sigma) {
     double sum = 0.0;
-    
-    // Calculate Gaussian values
+    int N_half = N / 2; 
+
     for (int i = 0; i < N; i++) {
         for (int j = 0; j < N; j++) {
-            double x = i - (N/2);
-            double y = j - (N/2);
-            k[i][j] = exp(-(x*x + y*y) / (2 * sigma * sigma));
+            double x_dist = static_cast<double>(i) - N_half;
+            double y_dist = static_cast<double>(j) - N_half;
+            k[i][j] = exp(-(x_dist*x_dist + y_dist*y_dist) / (2 * sigma * sigma));
             sum += k[i][j];
         }
     }
-    
-    // Normalize kernel values
-    for (int i = 0; i < N; i++) {
-        for (int j = 0; j < N; j++) {
-            k[i][j] /= sum;
-        }
-    }
-}
 
-// Structure to hold HSL values
-struct HSL {
-    double h; // Hue [0, 360]
-    double s; // Saturation [0, 1]
-    double l; // Lightness [0, 1]
-};
-
-// Convert RGB to HSL
-HSL rgbToHSL(unsigned char r, unsigned char g, unsigned char b) {
-    double rf = r / 255.0;
-    double gf = g / 255.0;
-    double bf = b / 255.0;
-    
-    double max = std::max({rf, gf, bf});
-    double min = std::min({rf, gf, bf});
-    double delta = max - min;
-    
-    HSL hsl;
-    hsl.l = (max + min) / 2.0;
-    
-    if (delta == 0) {
-        hsl.h = 0;
-        hsl.s = 0;
-    } else {
-        hsl.s = hsl.l > 0.5 ? delta / (2.0 - max - min) : delta / (max + min);
-        
-        if (max == rf) {
-            hsl.h = (gf - bf) / delta + (gf < bf ? 6 : 0);
-        } else if (max == gf) {
-            hsl.h = (bf - rf) / delta + 2;
-        } else {
-            hsl.h = (rf - gf) / delta + 4;
-        }
-        hsl.h *= 60;
-    }
-    
-    return hsl;
-}
-
-// Convert HSL to RGB
-void hslToRGB(const HSL& hsl, unsigned char& r, unsigned char& g, unsigned char& b) {
-    if (hsl.s == 0) {
-        r = g = b = static_cast<unsigned char>(hsl.l * 255);
-        return;
-    }
-    
-    double q = hsl.l < 0.5 ? hsl.l * (1 + hsl.s) : hsl.l + hsl.s - hsl.l * hsl.s;
-    double p = 2 * hsl.l - q;
-    
-    double hk = hsl.h / 360.0;
-    
-    auto hueToRGB = [](double p, double q, double t) {
-        if (t < 0) t += 1;
-        if (t > 1) t -= 1;
-        if (t < 1.0/6.0) return p + (q - p) * 6 * t;
-        if (t < 1.0/2.0) return q;
-        if (t < 2.0/3.0) return p + (q - p) * (2.0/3.0 - t) * 6;
-        return p;
-    };
-    
-    double rf = hueToRGB(p, q, hk + 1.0/3.0);
-    double gf = hueToRGB(p, q, hk);
-    double bf = hueToRGB(p, q, hk - 1.0/3.0);
-    
-    r = static_cast<unsigned char>(std::min(255.0, std::max(0.0, rf * 255)));
-    g = static_cast<unsigned char>(std::min(255.0, std::max(0.0, gf * 255)));
-    b = static_cast<unsigned char>(std::min(255.0, std::max(0.0, bf * 255)));
-}
-
-// Function to compute CDF for a region (optimized)
-void computeRegionCDF(unsigned char*** image, int startX, int startY, int width, int height,
-                     int clipLimit, double* cdf) {
-    // Use stack allocation for histogram to avoid heap allocation
-    int histogram[256] = {0};
-    int totalPixels = width * height;
-    
-    // Optimize histogram computation by processing in blocks
-    for (int y = startY; y < startY + height; y++) {
-        for (int x = startX; x < startX + width; x++) {
-            // Direct luminance calculation instead of full HSL conversion
-            int luminance = (int)(0.299 * image[y][x][0] + 0.587 * image[y][x][1] + 0.114 * image[y][x][2]);
-            histogram[luminance]++;
-        }
-    }
-    
-    // Clip histogram with optimized redistribution
-    int excess = 0;
-    for (int i = 0; i < 256; i++) {
-        if (histogram[i] > clipLimit) {
-            excess += histogram[i] - clipLimit;
-            histogram[i] = clipLimit;
-        }
-    }
-    
-    // Optimize redistribution
-    if (excess > 0) {
-        int increment = excess / 256;
-        int remainder = excess % 256;
-        for (int i = 0; i < 256; i++) {
-            histogram[i] += increment;
-            if (remainder > 0) {
-                histogram[i]++;
-                remainder--;
+    if (sum != 0) { 
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                k[i][j] /= sum;
             }
         }
     }
-    
-    // Compute CDF in a single pass with brightness preservation
-    double sum = 0.0;
-    double maxCDF = 0.0;
-    for (int i = 0; i < 256; i++) {
-        sum += (double)histogram[i] / totalPixels;
-        cdf[i] = sum;
-        maxCDF = sum;
-    }
-    
-    // Normalize CDF to prevent over-brightening
-    if (maxCDF > 0) {
-        for (int i = 0; i < 256; i++) {
-            // More conservative normalization
-            cdf[i] = 0.5 + (cdf[i] - 0.5) * 0.6; // Reduce contrast enhancement more
-        }
-    }
 }
 
-// Main CLAHE function with performance optimizations and conservative brightness
-void applyCLAHE(unsigned char*** output, unsigned char*** input, ImageSize* size, 
-                int tileSize, double clipLimit) {
-    // Calculate number of tiles
+void applyCLAHE(unsigned char*** out, unsigned char*** in, ImageSize* size,
+                int tileSize, double clipLimitFactor) { 
     int numTilesX = (size->width + tileSize - 1) / tileSize;
     int numTilesY = (size->height + tileSize - 1) / tileSize;
-    
-    // Calculate clip limit based on tile size (more conservative)
-    int pixelsPerTile = tileSize * tileSize;
-    int clipLimitPixels = (int)(clipLimit * pixelsPerTile / 256);
-    
-    // Pre-allocate CDF array with a single allocation
-    double* cdfArray = new double[numTilesY * numTilesX * 256];
+
+    int intermediateTileSize = tileSize * 2;
+    int intermediateNumTilesX = (size->width + intermediateTileSize - 1) / intermediateTileSize;
+    int intermediateNumTilesY = (size->height + intermediateTileSize - 1) / intermediateTileSize;
+
+    double* cdfMasterArray = new double[numTilesY * numTilesX * 256];
     double*** tileCDFs = new double**[numTilesY];
     for (int i = 0; i < numTilesY; i++) {
         tileCDFs[i] = new double*[numTilesX];
         for (int j = 0; j < numTilesX; j++) {
-            tileCDFs[i][j] = &cdfArray[(i * numTilesX + j) * 256];
+            tileCDFs[i][j] = &cdfMasterArray[(i * numTilesX + j) * 256];
         }
     }
-    
+
     try {
-        // Compute CDFs for all tiles sequentially
+        int* intermediateHistograms = new int[intermediateNumTilesY * intermediateNumTilesX * 256];
+        memset(intermediateHistograms, 0, intermediateNumTilesY * intermediateNumTilesX * 256 * sizeof(int));
+
+        for (int ty = 0; ty < intermediateNumTilesY; ty++) {
+            for (int tx = 0; tx < intermediateNumTilesX; tx++) {
+                int startX = tx * intermediateTileSize;
+                int startY = ty * intermediateTileSize;
+                int tileActualWidth = std::min(intermediateTileSize, size->width - startX);
+                int tileActualHeight = std::min(intermediateTileSize, size->height - startY);
+                
+                int* hist = intermediateHistograms + (ty * intermediateNumTilesX + tx) * 256;
+                
+                for (int y = startY; y < startY + tileActualHeight; y++) {
+                    for (int x = startX; x < startX + tileActualWidth; x++) {
+                        int luminance = static_cast<int>(0.299 * in[y][x][0] +
+                                                       0.587 * in[y][x][1] +
+                                                       0.114 * in[y][x][2]);
+                        hist[luminance]++;
+                    }
+                }
+            }
+        }
+
+        // Then compute the actual histograms with the requested tile size
         for (int ty = 0; ty < numTilesY; ty++) {
             for (int tx = 0; tx < numTilesX; tx++) {
                 int startX = tx * tileSize;
                 int startY = ty * tileSize;
-                int width = std::min(tileSize, size->width - startX);
-                int height = std::min(tileSize, size->height - startY);
-                
-                computeRegionCDF(input, startX, startY, width, height, 
-                               clipLimitPixels, tileCDFs[ty][tx]);
+                int tileActualWidth = std::min(tileSize, size->width - startX);
+                int tileActualHeight = std::min(tileSize, size->height - startY);
+                int pixelsInTile = tileActualWidth * tileActualHeight;
+                if (pixelsInTile == 0) { 
+                     for(int i=0; i<256; ++i) tileCDFs[ty][tx][i] = i/255.0; 
+                     continue;
+                }
+
+                int histogram[256] = {0};
+                for (int y_coord = startY; y_coord < startY + tileActualHeight; y_coord++) { // Renamed y to y_coord
+                    for (int x_coord = startX; x_coord < startX + tileActualWidth; x_coord++) { // Renamed x to x_coord
+                        int luminance = static_cast<int>(0.299 * in[y_coord][x_coord][0] +
+                                                       0.587 * in[y_coord][x_coord][1] +
+                                                       0.114 * in[y_coord][x_coord][2]);
+                        histogram[luminance]++;
+                    }
+                }
+
+                int actualClipLimit = static_cast<int>(clipLimitFactor * pixelsInTile / 256.0);
+                if (actualClipLimit < 1) actualClipLimit = 1; 
+
+                int excess = 0;
+                for (int i = 0; i < 256; i++) {
+                    if (histogram[i] > actualClipLimit) {
+                        excess += histogram[i] - actualClipLimit;
+                        histogram[i] = actualClipLimit;
+                    }
+                }
+
+                if (excess > 0) {
+                    int increment = excess / 256;
+                    int remainder = excess % 256;
+                    for (int i = 0; i < 256; i++) {
+                        histogram[i] += increment;
+                        if (remainder > 0) {
+                            histogram[i]++;
+                            remainder--;
+                        }
+                    }
+                }
+
+                double current_sum = 0.0; // Renamed sum to current_sum
+                for (int i = 0; i < 256; i++) {
+                    current_sum += static_cast<double>(histogram[i]) / pixelsInTile;
+                    tileCDFs[ty][tx][i] = std::min(1.0, current_sum); 
+                }
+                if (pixelsInTile > 0) {
+                    tileCDFs[ty][tx][255] = 1.0;
+                }
             }
         }
-        
-        // Process pixels sequentially with optimized interpolation and conservative brightness
-        for (int y = 0; y < size->height; y++) {
-            for (int x = 0; x < size->width; x++) {
-                // Calculate tile indices and weights once
-                double tileX = (double)x / tileSize;
-                double tileY = (double)y / tileSize;
-                int tx1 = static_cast<int>(tileX);
-                int ty1 = static_cast<int>(tileY);
+
+        for (int y_pixel = 0; y_pixel < size->height; y_pixel++) { 
+            for (int x_pixel = 0; x_pixel < size->width; x_pixel++) { 
+                double tileX_coord = static_cast<double>(x_pixel) / tileSize;
+                double tileY_coord = static_cast<double>(y_pixel) / tileSize;
+                int tx1 = static_cast<int>(tileX_coord);
+                int ty1 = static_cast<int>(tileY_coord);
+                tx1 = std::min(tx1, numTilesX - 1);
+                ty1 = std::min(ty1, numTilesY - 1);
                 int tx2 = std::min(tx1 + 1, numTilesX - 1);
                 int ty2 = std::min(ty1 + 1, numTilesY - 1);
-                double wx = tileX - tx1;
-                double wy = tileY - ty1;
-                
-                // Get original luminance directly
-                int originalLuminance = (int)(0.299 * input[y][x][0] + 
-                                            0.587 * input[y][x][1] + 
-                                            0.114 * input[y][x][2]);
-                
-                // Get interpolated CDF value
+                double wx = tileX_coord - tx1; 
+                double wy = tileY_coord - ty1; 
+
+                int originalLuminance = static_cast<int>(0.299 * in[y_pixel][x_pixel][0] +
+                                                       0.587 * in[y_pixel][x_pixel][1] +
+                                                       0.114 * in[y_pixel][x_pixel][2]);
+                originalLuminance = std::max(0, std::min(255, originalLuminance));
+
                 double cdf_tl = tileCDFs[ty1][tx1][originalLuminance];
                 double cdf_tr = tileCDFs[ty1][tx2][originalLuminance];
                 double cdf_bl = tileCDFs[ty2][tx1][originalLuminance];
                 double cdf_br = tileCDFs[ty2][tx2][originalLuminance];
-                
-                double interpolatedCDF = (1 - wx) * (1 - wy) * cdf_tl +
-                                       wx * (1 - wy) * cdf_tr +
-                                       (1 - wx) * wy * cdf_bl +
-                                       wx * wy * cdf_br;
-                
-                // Apply transformation with more conservative brightness limits
-                int newLuminance = static_cast<int>(interpolatedCDF * 255);
-                double scale = (double)newLuminance / (originalLuminance + 1e-6);
-                
-                // Much more conservative scaling limits
-                scale = std::min(1.2, std::max(0.8, scale));
-                
-                // Calculate color ratios before modification
-                double maxChannel = std::max({(double)input[y][x][0], 
-                                           (double)input[y][x][1], 
-                                           (double)input[y][x][2]});
-                double ratios[3];
+
+                double interpolatedCDF_top = (1.0 - wx) * cdf_tl + wx * cdf_tr;
+                double interpolatedCDF_bottom = (1.0 - wx) * cdf_bl + wx * cdf_br;
+                double interpolatedCDF = (1.0 - wy) * interpolatedCDF_top + wy * interpolatedCDF_bottom;
+
+                int newLuminance = static_cast<int>(interpolatedCDF * 255.0);
+                newLuminance = std::max(0, std::min(255, newLuminance));
+
+                double scale = static_cast<double>(newLuminance) / (originalLuminance + 1e-6); 
+                scale = std::min(1.2, std::max(0.8, scale)); 
+
+                double maxChannelVal = std::max({static_cast<double>(in[y_pixel][x_pixel][0]),
+                                               static_cast<double>(in[y_pixel][x_pixel][1]),
+                                               static_cast<double>(in[y_pixel][x_pixel][2])});
+                if (maxChannelVal < 1e-6) maxChannelVal = 1e-6; 
+
+                double ratios[RGB];
                 for (int c = 0; c < RGB; c++) {
-                    ratios[c] = input[y][x][c] / (maxChannel + 1e-6);
+                    ratios[c] = static_cast<double>(in[y_pixel][x_pixel][c]) / maxChannelVal;
                 }
-                
-                // Apply scaling to RGB channels with color preservation
+
                 for (int c = 0; c < RGB; c++) {
-                    // Calculate the difference from the mean
-                    double mean = (input[y][x][0] + input[y][x][1] + input[y][x][2]) / 3.0;
-                    double diff = input[y][x][c] - mean;
-                    
-                    // Scale the difference and add it to the new mean with reduced effect
-                    double newValue = (mean * scale) + (diff * scale * 0.8); // Increase color preservation
-                    
-                    // Preserve bright areas
-                    if (input[y][x][c] > 200) { // If original pixel is very bright
-                        // Blend between original and enhanced value
-                        double blend = (input[y][x][c] - 200) / 55.0; // Gradual transition
-                        blend = std::min(1.0, std::max(0.0, blend));
-                        newValue = input[y][x][c] * blend + newValue * (1 - blend);
+                    double meanColor = (static_cast<double>(in[y_pixel][x_pixel][0]) +
+                                        static_cast<double>(in[y_pixel][x_pixel][1]) +
+                                        static_cast<double>(in[y_pixel][x_pixel][2])) / 3.0;
+                    double diff = static_cast<double>(in[y_pixel][x_pixel][c]) - meanColor;
+                    double newValue = (meanColor * scale) + (diff * scale * 0.8); 
+
+                    if (in[y_pixel][x_pixel][c] > 200) {
+                        double blendFactor = (static_cast<double>(in[y_pixel][x_pixel][c]) - 200.0) / 55.0;
+                        blendFactor = std::min(1.0, std::max(0.0, blendFactor));
+                        newValue = static_cast<double>(in[y_pixel][x_pixel][c]) * blendFactor + newValue * (1.0 - blendFactor);
                     }
-                    
-                    // Preserve color ratios
-                    newValue = newValue * ratios[c];
-                    
-                    // Clamp to valid range
-                    output[y][x][c] = static_cast<unsigned char>(std::min(255.0, std::max(0.0, newValue)));
+
+                    newValue = newValue * ratios[c]; 
+                    out[y_pixel][x_pixel][c] = static_cast<unsigned char>(std::max(0.0, std::min(255.0, newValue)));
                 }
             }
         }
+
+        delete[] intermediateHistograms;
     } catch (...) {
-        delete[] cdfArray;
+        for (int i = 0; i < numTilesY; i++) {
+            delete[] tileCDFs[i];
+        }
         delete[] tileCDFs;
-        throw;
+        delete[] cdfMasterArray;
+        throw; 
     }
-    
-    // Clean up
-    delete[] cdfArray;
+
+    for (int i = 0; i < numTilesY; i++) {
+        delete[] tileCDFs[i];
+    }
     delete[] tileCDFs;
+    delete[] cdfMasterArray;
 }
+

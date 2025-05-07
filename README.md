@@ -2,6 +2,83 @@
 
 This program is an image processing tool that applies various filters to BMP images. It supports both RGB and grayscale images of any size.
 
+## Getting Started
+
+### Prerequisites
+- CMake (version 3.10 or higher)
+- C++ compiler (supporting C++11 or higher)
+- Git (optional, for cloning the repository)
+- Python 3.x (for running batch processing scripts)
+- OpenMP (for parallel processing)
+- MPI (for distributed processing)
+- CUDA (for GPU acceleration)
+
+### Building the Program
+
+1. Clone or download this repository
+2. Create a build directory and navigate to it:
+   ```bash
+   mkdir build
+   cd build
+   ```
+3. Generate build files with CMake:
+   ```bash
+   cmake ..
+   ```
+4. Build the program:
+   ```bash
+   cmake --build .
+   ```
+5. The following executables will be created in the build directory:
+   - `filter_seq` - Sequential version
+   - `filter_omp` - OpenMP parallel version
+   - `filter_mpi` - MPI distributed version
+   - `filter_cuda` - CUDA GPU version
+
+### Running the Program
+
+The program is run from the command line with the following general syntax:
+```bash
+filter.exe <input_file> <filter_type> <parameters> <output_file>
+```
+
+## Batch Processing and Performance Testing
+
+The repository includes Python scripts for batch processing and performance testing:
+
+### 1. Process All Images (`run_all_images.py`)
+This script processes all BMP images in the `input` directory using different versions of the filter program and generates performance reports.
+
+Usage:
+```bash
+python run_all_images.py
+```
+
+The script will:
+- Process all BMP images in the `input` directory
+- Run each image through all versions (sequential, OpenMP, MPI, CUDA)
+- Generate performance reports in the `results` directory:
+  - `performance_results.txt` - Detailed execution logs
+  - `performance_data.json` - Timing data for plotting
+
+### 2. Process Single Image (`run_all_versions.py`)
+This script processes a single image through all versions of the filter program and shows performance comparisons.
+
+Usage:
+```bash
+python run_all_versions.py <input_image>
+```
+
+Example:
+```bash
+python run_all_versions.py input/sample1.bmp
+```
+
+The script will:
+- Process the specified image through all versions
+- Display execution times for each version
+- Show speedup comparisons relative to the sequential version
+
 ## Available Filters
 
 ### 1. Unsharp Masking Filter
@@ -32,17 +109,30 @@ Enhances local contrast in images by applying histogram equalization to small re
 - Command: `filter.exe input.bmp clahe tile_size clip_limit dummy output.bmp`
 - Example: `filter.exe input/sample.bmp clahe 8 2.0 0 output.bmp`
 
+## Quick Start Examples
+
+1. Apply unsharp masking to an image:
+   ```bash
+   filter.exe input/sample.bmp unsharp 5 1.0 1.5 output.bmp
+   ```
+
+2. Apply CLAHE to enhance contrast:
+   ```bash
+   filter.exe input/sample.bmp clahe 8 2.0 0 output.bmp
+   ```
+
+3. Apply both unsharp masking and CLAHE:
+   ```bash
+   filter.exe input/sample.bmp unsharp_clahe 5 1.0 1.5 output.bmp
+   ```
+
 ## Output Files
 
 The program creates output files in the `output` directory:
-1. For unsharp masking:
-   - The final sharpened image (e.g., `output.bmp`)
-   - The intermediate Gaussian blurred image (e.g., `output_blurred.bmp`)
-2. For unsharp masking + CLAHE:
+1. For unsharp masking + CLAHE:
+  - The intermediate Gaussian blurred image (e.g., `output_blurred.bmp`)
    - The intermediate unsharpened image (e.g., `output_unsharp.bmp`)
    - The final enhanced image (e.g., `output_unsharp_clahe.bmp`)
-3. For CLAHE:
-   - The contrast-enhanced image (e.g., `output.bmp`)
 
 ## Notes
 
@@ -68,5 +158,3 @@ The program will display error messages if:
 - Output file cannot be written
 - Memory allocation fails
 - Image dimensions are invalid or too large
-
-cmake --build .

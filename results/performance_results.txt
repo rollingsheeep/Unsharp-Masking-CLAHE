@@ -1,0 +1,5340 @@
+Performance Results Summary
+================================================================================
+
+Image: 1.bmp
+--------------------------------------------------------------------------------
+
+================================================================================
+Running Sequential Version...
+Command: ./filter_seq input\1.bmp unsharp_clahe 5 1.0 1.5 1
+================================================================================
+
+Image size: 2848x4272
+Original sigma: 1
+Scale factor: 6.0607
+Scaled sigma: 6.0607
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 81864 ms
+Blurred image has been saved as 'output/seq_1_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 18936 ms
+Unsharpened image has been saved as 'output/seq_1_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 37575 ms
+Final image (unsharp + CLAHE) has been saved as 'output/seq_1_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:      81864 ms
+Unsharp Masking:    18936 ms
+CLAHE:             37575 ms
+----------------------
+Total Time:        155079 ms
+----------------------
+
+
+================================================================================
+Running OpenMP Version...
+Command: ./filter_omp input\1.bmp unsharp_clahe 5 1.0 1.5 1
+================================================================================
+
+Image size: 2848x4272
+Original sigma: 1
+Scale factor: 6.0607
+Scaled sigma: 6.0607
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 12850 ms
+Blurred image has been saved as 'output/omp_1_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 650 ms
+Unsharpened image has been saved as 'output/omp_1_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 2477 ms
+Final image (unsharp + CLAHE) has been saved as 'output/omp_1_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:      12850 ms
+Unsharp Masking:      650 ms
+CLAHE:              2477 ms
+----------------------
+Total Time:         30928 ms
+----------------------
+
+
+================================================================================
+Running MPI Version...
+Command: mpiexec -n 1 ./filter_mpi input\1.bmp unsharp_clahe 5 1.0 1.5 1
+================================================================================
+
+Image size: 2848x4272
+Original sigma: 1
+Scale factor: 6.0607
+Scaled sigma: 6.0607
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 32349 ms
+Blurred image has been saved as 'output/mpi_1_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 3595 ms
+Unsharpened image has been saved as 'output/mpi_1_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 16901 ms
+Final image (unsharp + CLAHE) has been saved as 'output/mpi_1_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:      32349 ms
+Unsharp Masking:     3595 ms
+CLAHE:             16901 ms
+----------------------
+Total Time:         67796 ms
+----------------------
+
+
+================================================================================
+Running CUDA Version...
+Command: ./filter_cuda input\1.bmp unsharp_clahe 5 1.0 1.5 1
+================================================================================
+
+Image size: 2848x4272
+Original sigma: 1
+Scale factor: 6.0607
+Scaled sigma: 6.0607
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 1036 ms
+Blurred image has been saved as 'output/cuda_1_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 1063 ms
+Unsharpened image has been saved as 'output/cuda_1_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 4339 ms
+Final image (unsharp + CLAHE) has been saved as 'output/cuda_1_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:       1036 ms
+Unsharp Masking:     1063 ms
+CLAHE:              4339 ms
+----------------------
+Total Time:          6438 ms
+----------------------
+
+
+All versions completed!
+
+Execution Time Summary (in milliseconds):
+================================================================================
+Version    Gaussian Blur   Unsharp Masking CLAHE           Total          
+--------------------------------------------------------------------------------
+sequential 81864           18936           37575           155079         
+openmp     12850           650             2477            30928          
+mpi        32349           3595            16901           67796          
+cuda       1036            1063            4339            6438           
+================================================================================
+
+Speedup relative to Sequential Version:
+--------------------------------------------------------------------------------
+openmp    : 5.01x faster
+mpi       : 2.29x faster
+cuda      : 24.09x faster
+
+================================================================================
+
+Image: 11.bmp
+--------------------------------------------------------------------------------
+
+================================================================================
+Running Sequential Version...
+Command: ./filter_seq input\11.bmp unsharp_clahe 5 1.0 1.5 11
+================================================================================
+
+Image size: 512x320
+Original sigma: 1
+Scale factor: 3
+Scaled sigma: 3
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 686 ms
+Blurred image has been saved as 'output/seq_11_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 219 ms
+Unsharpened image has been saved as 'output/seq_11_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 470 ms
+Final image (unsharp + CLAHE) has been saved as 'output/seq_11_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        686 ms
+Unsharp Masking:      219 ms
+CLAHE:               470 ms
+----------------------
+Total Time:          1580 ms
+----------------------
+
+
+================================================================================
+Running OpenMP Version...
+Command: ./filter_omp input\11.bmp unsharp_clahe 5 1.0 1.5 11
+================================================================================
+
+Image size: 512x320
+Original sigma: 1
+Scale factor: 3
+Scaled sigma: 3
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 260 ms
+Blurred image has been saved as 'output/omp_11_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 24 ms
+Unsharpened image has been saved as 'output/omp_11_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 46 ms
+Final image (unsharp + CLAHE) has been saved as 'output/omp_11_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        260 ms
+Unsharp Masking:       24 ms
+CLAHE:                46 ms
+----------------------
+Total Time:           598 ms
+----------------------
+
+
+================================================================================
+Running MPI Version...
+Command: mpiexec -n 1 ./filter_mpi input\11.bmp unsharp_clahe 5 1.0 1.5 11
+================================================================================
+
+Image size: 512x320
+Original sigma: 1
+Scale factor: 3
+Scaled sigma: 3
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 332 ms
+Blurred image has been saved as 'output/mpi_11_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 56 ms
+Unsharpened image has been saved as 'output/mpi_11_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 210 ms
+Final image (unsharp + CLAHE) has been saved as 'output/mpi_11_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        332 ms
+Unsharp Masking:       56 ms
+CLAHE:               210 ms
+----------------------
+Total Time:           796 ms
+----------------------
+
+
+================================================================================
+Running CUDA Version...
+Command: ./filter_cuda input\11.bmp unsharp_clahe 5 1.0 1.5 11
+================================================================================
+
+Image size: 512x320
+Original sigma: 1
+Scale factor: 3
+Scaled sigma: 3
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 149 ms
+Blurred image has been saved as 'output/cuda_11_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 14 ms
+Unsharpened image has been saved as 'output/cuda_11_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 52 ms
+Final image (unsharp + CLAHE) has been saved as 'output/cuda_11_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        149 ms
+Unsharp Masking:       14 ms
+CLAHE:                52 ms
+----------------------
+Total Time:           215 ms
+----------------------
+
+
+All versions completed!
+
+Execution Time Summary (in milliseconds):
+================================================================================
+Version    Gaussian Blur   Unsharp Masking CLAHE           Total          
+--------------------------------------------------------------------------------
+sequential 686             219             470             1580           
+openmp     260             24              46              598            
+mpi        332             56              210             796            
+cuda       149             14              52              215            
+================================================================================
+
+Speedup relative to Sequential Version:
+--------------------------------------------------------------------------------
+openmp    : 2.64x faster
+mpi       : 1.98x faster
+cuda      : 7.35x faster
+
+================================================================================
+
+Image: 12.bmp
+--------------------------------------------------------------------------------
+
+================================================================================
+Running Sequential Version...
+Command: ./filter_seq input\12.bmp unsharp_clahe 5 1.0 1.5 12
+================================================================================
+
+Image size: 1500x966
+Original sigma: 1
+Scale factor: 4.55075
+Scaled sigma: 4.55075
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 6784 ms
+Blurred image has been saved as 'output/seq_12_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 2537 ms
+Unsharpened image has been saved as 'output/seq_12_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 5809 ms
+Final image (unsharp + CLAHE) has been saved as 'output/seq_12_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:       6784 ms
+Unsharp Masking:     2537 ms
+CLAHE:              5809 ms
+----------------------
+Total Time:         17914 ms
+----------------------
+
+
+================================================================================
+Running OpenMP Version...
+Command: ./filter_omp input\12.bmp unsharp_clahe 5 1.0 1.5 12
+================================================================================
+
+Image size: 1500x966
+Original sigma: 1
+Scale factor: 4.55075
+Scaled sigma: 4.55075
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 2055 ms
+Blurred image has been saved as 'output/omp_12_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 109 ms
+Unsharpened image has been saved as 'output/omp_12_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 355 ms
+Final image (unsharp + CLAHE) has been saved as 'output/omp_12_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:       2055 ms
+Unsharp Masking:      109 ms
+CLAHE:               355 ms
+----------------------
+Total Time:          4307 ms
+----------------------
+
+
+================================================================================
+Running MPI Version...
+Command: mpiexec -n 1 ./filter_mpi input\12.bmp unsharp_clahe 5 1.0 1.5 12
+================================================================================
+
+Image size: 1500x966
+Original sigma: 1
+Scale factor: 4.55075
+Scaled sigma: 4.55075
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 3184 ms
+Blurred image has been saved as 'output/mpi_12_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 392 ms
+Unsharpened image has been saved as 'output/mpi_12_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 1902 ms
+Final image (unsharp + CLAHE) has been saved as 'output/mpi_12_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:       3184 ms
+Unsharp Masking:      392 ms
+CLAHE:              1902 ms
+----------------------
+Total Time:          7141 ms
+----------------------
+
+
+================================================================================
+Running CUDA Version...
+Command: ./filter_cuda input\12.bmp unsharp_clahe 5 1.0 1.5 12
+================================================================================
+
+Image size: 1500x966
+Original sigma: 1
+Scale factor: 4.55075
+Scaled sigma: 4.55075
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 260 ms
+Blurred image has been saved as 'output/cuda_12_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 117 ms
+Unsharpened image has been saved as 'output/cuda_12_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 489 ms
+Final image (unsharp + CLAHE) has been saved as 'output/cuda_12_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        260 ms
+Unsharp Masking:      117 ms
+CLAHE:               489 ms
+----------------------
+Total Time:           866 ms
+----------------------
+
+
+All versions completed!
+
+Execution Time Summary (in milliseconds):
+================================================================================
+Version    Gaussian Blur   Unsharp Masking CLAHE           Total          
+--------------------------------------------------------------------------------
+sequential 6784            2537            5809            17914          
+openmp     2055            109             355             4307           
+mpi        3184            392             1902            7141           
+cuda       260             117             489             866            
+================================================================================
+
+Speedup relative to Sequential Version:
+--------------------------------------------------------------------------------
+openmp    : 4.16x faster
+mpi       : 2.51x faster
+cuda      : 20.69x faster
+
+================================================================================
+
+Image: 13.bmp
+--------------------------------------------------------------------------------
+
+================================================================================
+Running Sequential Version...
+Command: ./filter_seq input\13.bmp unsharp_clahe 5 1.0 1.5 13
+================================================================================
+
+Image size: 1024x576
+Original sigma: 1
+Scale factor: 4
+Scaled sigma: 4
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 2624 ms
+Blurred image has been saved as 'output/seq_13_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 794 ms
+Unsharpened image has been saved as 'output/seq_13_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 1776 ms
+Final image (unsharp + CLAHE) has been saved as 'output/seq_13_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:       2624 ms
+Unsharp Masking:      794 ms
+CLAHE:              1776 ms
+----------------------
+Total Time:          5885 ms
+----------------------
+
+
+================================================================================
+Running OpenMP Version...
+Command: ./filter_omp input\13.bmp unsharp_clahe 5 1.0 1.5 13
+================================================================================
+
+Image size: 1024x576
+Original sigma: 1
+Scale factor: 4
+Scaled sigma: 4
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 850 ms
+Blurred image has been saved as 'output/omp_13_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 39 ms
+Unsharpened image has been saved as 'output/omp_13_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 148 ms
+Final image (unsharp + CLAHE) has been saved as 'output/omp_13_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        850 ms
+Unsharp Masking:       39 ms
+CLAHE:               148 ms
+----------------------
+Total Time:          1765 ms
+----------------------
+
+
+================================================================================
+Running MPI Version...
+Command: mpiexec -n 1 ./filter_mpi input\13.bmp unsharp_clahe 5 1.0 1.5 13
+================================================================================
+
+Image size: 1024x576
+Original sigma: 1
+Scale factor: 4
+Scaled sigma: 4
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 1243 ms
+Blurred image has been saved as 'output/mpi_13_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 173 ms
+Unsharpened image has been saved as 'output/mpi_13_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 763 ms
+Final image (unsharp + CLAHE) has been saved as 'output/mpi_13_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:       1243 ms
+Unsharp Masking:      173 ms
+CLAHE:               763 ms
+----------------------
+Total Time:          2865 ms
+----------------------
+
+
+================================================================================
+Running CUDA Version...
+Command: ./filter_cuda input\13.bmp unsharp_clahe 5 1.0 1.5 13
+================================================================================
+
+Image size: 1024x576
+Original sigma: 1
+Scale factor: 4
+Scaled sigma: 4
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 186 ms
+Blurred image has been saved as 'output/cuda_13_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 52 ms
+Unsharpened image has been saved as 'output/cuda_13_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 198 ms
+Final image (unsharp + CLAHE) has been saved as 'output/cuda_13_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        186 ms
+Unsharp Masking:       52 ms
+CLAHE:               198 ms
+----------------------
+Total Time:           436 ms
+----------------------
+
+
+All versions completed!
+
+Execution Time Summary (in milliseconds):
+================================================================================
+Version    Gaussian Blur   Unsharp Masking CLAHE           Total          
+--------------------------------------------------------------------------------
+sequential 2624            794             1776            5885           
+openmp     850             39              148             1765           
+mpi        1243            173             763             2865           
+cuda       186             52              198             436            
+================================================================================
+
+Speedup relative to Sequential Version:
+--------------------------------------------------------------------------------
+openmp    : 3.33x faster
+mpi       : 2.05x faster
+cuda      : 13.50x faster
+
+================================================================================
+
+Image: 14.bmp
+--------------------------------------------------------------------------------
+
+================================================================================
+Running Sequential Version...
+Command: ./filter_seq input\14.bmp unsharp_clahe 5 1.0 1.5 14
+================================================================================
+
+Image size: 736x920
+Original sigma: 1
+Scale factor: 3.84549
+Scaled sigma: 3.84549
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 2903 ms
+Blurred image has been saved as 'output/seq_14_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 897 ms
+Unsharpened image has been saved as 'output/seq_14_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 2035 ms
+Final image (unsharp + CLAHE) has been saved as 'output/seq_14_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:       2903 ms
+Unsharp Masking:      897 ms
+CLAHE:              2035 ms
+----------------------
+Total Time:          6591 ms
+----------------------
+
+
+================================================================================
+Running OpenMP Version...
+Command: ./filter_omp input\14.bmp unsharp_clahe 5 1.0 1.5 14
+================================================================================
+
+Image size: 736x920
+Original sigma: 1
+Scale factor: 3.84549
+Scaled sigma: 3.84549
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 926 ms
+Blurred image has been saved as 'output/omp_14_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 54 ms
+Unsharpened image has been saved as 'output/omp_14_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 218 ms
+Final image (unsharp + CLAHE) has been saved as 'output/omp_14_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        926 ms
+Unsharp Masking:       54 ms
+CLAHE:               218 ms
+----------------------
+Total Time:          2016 ms
+----------------------
+
+
+================================================================================
+Running MPI Version...
+Command: mpiexec -n 1 ./filter_mpi input\14.bmp unsharp_clahe 5 1.0 1.5 14
+================================================================================
+
+Image size: 736x920
+Original sigma: 1
+Scale factor: 3.84549
+Scaled sigma: 3.84549
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 1402 ms
+Blurred image has been saved as 'output/mpi_14_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 182 ms
+Unsharpened image has been saved as 'output/mpi_14_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 855 ms
+Final image (unsharp + CLAHE) has been saved as 'output/mpi_14_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:       1402 ms
+Unsharp Masking:      182 ms
+CLAHE:               855 ms
+----------------------
+Total Time:          3256 ms
+----------------------
+
+
+================================================================================
+Running CUDA Version...
+Command: ./filter_cuda input\14.bmp unsharp_clahe 5 1.0 1.5 14
+================================================================================
+
+Image size: 736x920
+Original sigma: 1
+Scale factor: 3.84549
+Scaled sigma: 3.84549
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 180 ms
+Blurred image has been saved as 'output/cuda_14_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 54 ms
+Unsharpened image has been saved as 'output/cuda_14_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 234 ms
+Final image (unsharp + CLAHE) has been saved as 'output/cuda_14_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        180 ms
+Unsharp Masking:       54 ms
+CLAHE:               234 ms
+----------------------
+Total Time:           468 ms
+----------------------
+
+
+All versions completed!
+
+Execution Time Summary (in milliseconds):
+================================================================================
+Version    Gaussian Blur   Unsharp Masking CLAHE           Total          
+--------------------------------------------------------------------------------
+sequential 2903            897             2035            6591           
+openmp     926             54              218             2016           
+mpi        1402            182             855             3256           
+cuda       180             54              234             468            
+================================================================================
+
+Speedup relative to Sequential Version:
+--------------------------------------------------------------------------------
+openmp    : 3.27x faster
+mpi       : 2.02x faster
+cuda      : 14.08x faster
+
+================================================================================
+
+Image: 15.bmp
+--------------------------------------------------------------------------------
+
+================================================================================
+Running Sequential Version...
+Command: ./filter_seq input\15.bmp unsharp_clahe 5 1.0 1.5 15
+================================================================================
+
+Image size: 1100x825
+Original sigma: 1
+Scale factor: 4.10329
+Scaled sigma: 4.10329
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 3899 ms
+Blurred image has been saved as 'output/seq_15_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 1205 ms
+Unsharpened image has been saved as 'output/seq_15_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 2591 ms
+Final image (unsharp + CLAHE) has been saved as 'output/seq_15_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:       3899 ms
+Unsharp Masking:     1205 ms
+CLAHE:              2591 ms
+----------------------
+Total Time:          8832 ms
+----------------------
+
+
+================================================================================
+Running OpenMP Version...
+Command: ./filter_omp input\15.bmp unsharp_clahe 5 1.0 1.5 15
+================================================================================
+
+Image size: 1100x825
+Original sigma: 1
+Scale factor: 4.10329
+Scaled sigma: 4.10329
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 1145 ms
+Blurred image has been saved as 'output/omp_15_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 63 ms
+Unsharpened image has been saved as 'output/omp_15_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 244 ms
+Final image (unsharp + CLAHE) has been saved as 'output/omp_15_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:       1145 ms
+Unsharp Masking:       63 ms
+CLAHE:               244 ms
+----------------------
+Total Time:          2524 ms
+----------------------
+
+
+================================================================================
+Running MPI Version...
+Command: mpiexec -n 1 ./filter_mpi input\15.bmp unsharp_clahe 5 1.0 1.5 15
+================================================================================
+
+Image size: 1100x825
+Original sigma: 1
+Scale factor: 4.10329
+Scaled sigma: 4.10329
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 1966 ms
+Blurred image has been saved as 'output/mpi_15_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 252 ms
+Unsharpened image has been saved as 'output/mpi_15_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 1130 ms
+Final image (unsharp + CLAHE) has been saved as 'output/mpi_15_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:       1966 ms
+Unsharp Masking:      252 ms
+CLAHE:              1130 ms
+----------------------
+Total Time:          4415 ms
+----------------------
+
+
+================================================================================
+Running CUDA Version...
+Command: ./filter_cuda input\15.bmp unsharp_clahe 5 1.0 1.5 15
+================================================================================
+
+Image size: 1100x825
+Original sigma: 1
+Scale factor: 4.10329
+Scaled sigma: 4.10329
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 182 ms
+Blurred image has been saved as 'output/cuda_15_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 84 ms
+Unsharpened image has been saved as 'output/cuda_15_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 282 ms
+Final image (unsharp + CLAHE) has been saved as 'output/cuda_15_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        182 ms
+Unsharp Masking:       84 ms
+CLAHE:               282 ms
+----------------------
+Total Time:           548 ms
+----------------------
+
+
+All versions completed!
+
+Execution Time Summary (in milliseconds):
+================================================================================
+Version    Gaussian Blur   Unsharp Masking CLAHE           Total          
+--------------------------------------------------------------------------------
+sequential 3899            1205            2591            8832           
+openmp     1145            63              244             2524           
+mpi        1966            252             1130            4415           
+cuda       182             84              282             548            
+================================================================================
+
+Speedup relative to Sequential Version:
+--------------------------------------------------------------------------------
+openmp    : 3.50x faster
+mpi       : 2.00x faster
+cuda      : 16.12x faster
+
+================================================================================
+
+Image: 19.bmp
+--------------------------------------------------------------------------------
+
+================================================================================
+Running Sequential Version...
+Command: ./filter_seq input\19.bmp unsharp_clahe 5 1.0 1.5 19
+================================================================================
+
+Image size: 2832x4256
+Original sigma: 1
+Scale factor: 6.05528
+Scaled sigma: 6.05528
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 64661 ms
+Blurred image has been saved as 'output/seq_19_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 16731 ms
+Unsharpened image has been saved as 'output/seq_19_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 41595 ms
+Final image (unsharp + CLAHE) has been saved as 'output/seq_19_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:      64661 ms
+Unsharp Masking:    16731 ms
+CLAHE:             41595 ms
+----------------------
+Total Time:        137521 ms
+----------------------
+
+
+================================================================================
+Running OpenMP Version...
+Command: ./filter_omp input\19.bmp unsharp_clahe 5 1.0 1.5 19
+================================================================================
+
+Image size: 2832x4256
+Original sigma: 1
+Scale factor: 6.05528
+Scaled sigma: 6.05528
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 14336 ms
+Blurred image has been saved as 'output/omp_19_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 694 ms
+Unsharpened image has been saved as 'output/omp_19_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 2772 ms
+Final image (unsharp + CLAHE) has been saved as 'output/omp_19_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:      14336 ms
+Unsharp Masking:      694 ms
+CLAHE:              2772 ms
+----------------------
+Total Time:         32628 ms
+----------------------
+
+
+================================================================================
+Running MPI Version...
+Command: mpiexec -n 1 ./filter_mpi input\19.bmp unsharp_clahe 5 1.0 1.5 19
+================================================================================
+
+Image size: 2832x4256
+Original sigma: 1
+Scale factor: 6.05528
+Scaled sigma: 6.05528
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 31056 ms
+Blurred image has been saved as 'output/mpi_19_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 3683 ms
+Unsharpened image has been saved as 'output/mpi_19_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 19014 ms
+Final image (unsharp + CLAHE) has been saved as 'output/mpi_19_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:      31056 ms
+Unsharp Masking:     3683 ms
+CLAHE:             19014 ms
+----------------------
+Total Time:         68809 ms
+----------------------
+
+
+================================================================================
+Running CUDA Version...
+Command: ./filter_cuda input\19.bmp unsharp_clahe 5 1.0 1.5 19
+================================================================================
+
+Image size: 2832x4256
+Original sigma: 1
+Scale factor: 6.05528
+Scaled sigma: 6.05528
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 686 ms
+Blurred image has been saved as 'output/cuda_19_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 1057 ms
+Unsharpened image has been saved as 'output/cuda_19_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 5089 ms
+Final image (unsharp + CLAHE) has been saved as 'output/cuda_19_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        686 ms
+Unsharp Masking:     1057 ms
+CLAHE:              5089 ms
+----------------------
+Total Time:          6832 ms
+----------------------
+
+
+All versions completed!
+
+Execution Time Summary (in milliseconds):
+================================================================================
+Version    Gaussian Blur   Unsharp Masking CLAHE           Total          
+--------------------------------------------------------------------------------
+sequential 64661           16731           41595           137521         
+openmp     14336           694             2772            32628          
+mpi        31056           3683            19014           68809          
+cuda       686             1057            5089            6832           
+================================================================================
+
+Speedup relative to Sequential Version:
+--------------------------------------------------------------------------------
+openmp    : 4.21x faster
+mpi       : 2.00x faster
+cuda      : 20.13x faster
+
+================================================================================
+
+Image: 2.bmp
+--------------------------------------------------------------------------------
+
+================================================================================
+Running Sequential Version...
+Command: ./filter_seq input\2.bmp unsharp_clahe 5 1.0 1.5 2
+================================================================================
+
+Image size: 400x550
+Original sigma: 1
+Scale factor: 3.10329
+Scaled sigma: 3.10329
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 996 ms
+Blurred image has been saved as 'output/seq_2_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 352 ms
+Unsharpened image has been saved as 'output/seq_2_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 796 ms
+Final image (unsharp + CLAHE) has been saved as 'output/seq_2_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        996 ms
+Unsharp Masking:      352 ms
+CLAHE:               796 ms
+----------------------
+Total Time:          2423 ms
+----------------------
+
+
+================================================================================
+Running OpenMP Version...
+Command: ./filter_omp input\2.bmp unsharp_clahe 5 1.0 1.5 2
+================================================================================
+
+Image size: 400x550
+Original sigma: 1
+Scale factor: 3.10329
+Scaled sigma: 3.10329
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 331 ms
+Blurred image has been saved as 'output/omp_2_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 26 ms
+Unsharpened image has been saved as 'output/omp_2_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 68 ms
+Final image (unsharp + CLAHE) has been saved as 'output/omp_2_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        331 ms
+Unsharp Masking:       26 ms
+CLAHE:                68 ms
+----------------------
+Total Time:           767 ms
+----------------------
+
+
+================================================================================
+Running MPI Version...
+Command: mpiexec -n 1 ./filter_mpi input\2.bmp unsharp_clahe 5 1.0 1.5 2
+================================================================================
+
+Image size: 400x550
+Original sigma: 1
+Scale factor: 3.10329
+Scaled sigma: 3.10329
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 477 ms
+Blurred image has been saved as 'output/mpi_2_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 67 ms
+Unsharpened image has been saved as 'output/mpi_2_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 301 ms
+Final image (unsharp + CLAHE) has been saved as 'output/mpi_2_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        477 ms
+Unsharp Masking:       67 ms
+CLAHE:               301 ms
+----------------------
+Total Time:          1114 ms
+----------------------
+
+
+================================================================================
+Running CUDA Version...
+Command: ./filter_cuda input\2.bmp unsharp_clahe 5 1.0 1.5 2
+================================================================================
+
+Image size: 400x550
+Original sigma: 1
+Scale factor: 3.10329
+Scaled sigma: 3.10329
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 385 ms
+Blurred image has been saved as 'output/cuda_2_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 30 ms
+Unsharpened image has been saved as 'output/cuda_2_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 83 ms
+Final image (unsharp + CLAHE) has been saved as 'output/cuda_2_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        385 ms
+Unsharp Masking:       30 ms
+CLAHE:                83 ms
+----------------------
+Total Time:           498 ms
+----------------------
+
+
+All versions completed!
+
+Execution Time Summary (in milliseconds):
+================================================================================
+Version    Gaussian Blur   Unsharp Masking CLAHE           Total          
+--------------------------------------------------------------------------------
+sequential 996             352             796             2423           
+openmp     331             26              68              767            
+mpi        477             67              301             1114           
+cuda       385             30              83              498            
+================================================================================
+
+Speedup relative to Sequential Version:
+--------------------------------------------------------------------------------
+openmp    : 3.16x faster
+mpi       : 2.18x faster
+cuda      : 4.87x faster
+
+================================================================================
+
+Image: 20.bmp
+--------------------------------------------------------------------------------
+
+================================================================================
+Running Sequential Version...
+Command: ./filter_seq input\20.bmp unsharp_clahe 5 1.0 1.5 20
+================================================================================
+
+Image size: 1000x667
+Original sigma: 1
+Scale factor: 3.96578
+Scaled sigma: 3.96578
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 3050 ms
+Blurred image has been saved as 'output/seq_20_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 871 ms
+Unsharpened image has been saved as 'output/seq_20_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 1967 ms
+Final image (unsharp + CLAHE) has been saved as 'output/seq_20_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:       3050 ms
+Unsharp Masking:      871 ms
+CLAHE:              1967 ms
+----------------------
+Total Time:          6705 ms
+----------------------
+
+
+================================================================================
+Running OpenMP Version...
+Command: ./filter_omp input\20.bmp unsharp_clahe 5 1.0 1.5 20
+================================================================================
+
+Image size: 1000x667
+Original sigma: 1
+Scale factor: 3.96578
+Scaled sigma: 3.96578
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 955 ms
+Blurred image has been saved as 'output/omp_20_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 45 ms
+Unsharpened image has been saved as 'output/omp_20_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 195 ms
+Final image (unsharp + CLAHE) has been saved as 'output/omp_20_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        955 ms
+Unsharp Masking:       45 ms
+CLAHE:               195 ms
+----------------------
+Total Time:          2062 ms
+----------------------
+
+
+================================================================================
+Running MPI Version...
+Command: mpiexec -n 1 ./filter_mpi input\20.bmp unsharp_clahe 5 1.0 1.5 20
+================================================================================
+
+Image size: 1000x667
+Original sigma: 1
+Scale factor: 3.96578
+Scaled sigma: 3.96578
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 1441 ms
+Blurred image has been saved as 'output/mpi_20_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 211 ms
+Unsharpened image has been saved as 'output/mpi_20_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 819 ms
+Final image (unsharp + CLAHE) has been saved as 'output/mpi_20_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:       1441 ms
+Unsharp Masking:      211 ms
+CLAHE:               819 ms
+----------------------
+Total Time:          3260 ms
+----------------------
+
+
+================================================================================
+Running CUDA Version...
+Command: ./filter_cuda input\20.bmp unsharp_clahe 5 1.0 1.5 20
+================================================================================
+
+Image size: 1000x667
+Original sigma: 1
+Scale factor: 3.96578
+Scaled sigma: 3.96578
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 362 ms
+Blurred image has been saved as 'output/cuda_20_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 86 ms
+Unsharpened image has been saved as 'output/cuda_20_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 235 ms
+Final image (unsharp + CLAHE) has been saved as 'output/cuda_20_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        362 ms
+Unsharp Masking:       86 ms
+CLAHE:               235 ms
+----------------------
+Total Time:           683 ms
+----------------------
+
+
+All versions completed!
+
+Execution Time Summary (in milliseconds):
+================================================================================
+Version    Gaussian Blur   Unsharp Masking CLAHE           Total          
+--------------------------------------------------------------------------------
+sequential 3050            871             1967            6705           
+openmp     955             45              195             2062           
+mpi        1441            211             819             3260           
+cuda       362             86              235             683            
+================================================================================
+
+Speedup relative to Sequential Version:
+--------------------------------------------------------------------------------
+openmp    : 3.25x faster
+mpi       : 2.06x faster
+cuda      : 9.82x faster
+
+================================================================================
+
+Image: 21.bmp
+--------------------------------------------------------------------------------
+
+================================================================================
+Running Sequential Version...
+Command: ./filter_seq input\21.bmp unsharp_clahe 5 1.0 1.5 21
+================================================================================
+
+Image size: 1000x664
+Original sigma: 1
+Scale factor: 3.96578
+Scaled sigma: 3.96578
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 3110 ms
+Blurred image has been saved as 'output/seq_21_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 1179 ms
+Unsharpened image has been saved as 'output/seq_21_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 2102 ms
+Final image (unsharp + CLAHE) has been saved as 'output/seq_21_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:       3110 ms
+Unsharp Masking:     1179 ms
+CLAHE:              2102 ms
+----------------------
+Total Time:          7238 ms
+----------------------
+
+
+================================================================================
+Running OpenMP Version...
+Command: ./filter_omp input\21.bmp unsharp_clahe 5 1.0 1.5 21
+================================================================================
+
+Image size: 1000x664
+Original sigma: 1
+Scale factor: 3.96578
+Scaled sigma: 3.96578
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 987 ms
+Blurred image has been saved as 'output/omp_21_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 50 ms
+Unsharpened image has been saved as 'output/omp_21_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 150 ms
+Final image (unsharp + CLAHE) has been saved as 'output/omp_21_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        987 ms
+Unsharp Masking:       50 ms
+CLAHE:               150 ms
+----------------------
+Total Time:          2001 ms
+----------------------
+
+
+================================================================================
+Running MPI Version...
+Command: mpiexec -n 1 ./filter_mpi input\21.bmp unsharp_clahe 5 1.0 1.5 21
+================================================================================
+
+Image size: 1000x664
+Original sigma: 1
+Scale factor: 3.96578
+Scaled sigma: 3.96578
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 1362 ms
+Blurred image has been saved as 'output/mpi_21_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 184 ms
+Unsharpened image has been saved as 'output/mpi_21_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 869 ms
+Final image (unsharp + CLAHE) has been saved as 'output/mpi_21_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:       1362 ms
+Unsharp Masking:      184 ms
+CLAHE:               869 ms
+----------------------
+Total Time:          3166 ms
+----------------------
+
+
+================================================================================
+Running CUDA Version...
+Command: ./filter_cuda input\21.bmp unsharp_clahe 5 1.0 1.5 21
+================================================================================
+
+Image size: 1000x664
+Original sigma: 1
+Scale factor: 3.96578
+Scaled sigma: 3.96578
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 204 ms
+Blurred image has been saved as 'output/cuda_21_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 63 ms
+Unsharpened image has been saved as 'output/cuda_21_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 240 ms
+Final image (unsharp + CLAHE) has been saved as 'output/cuda_21_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        204 ms
+Unsharp Masking:       63 ms
+CLAHE:               240 ms
+----------------------
+Total Time:           507 ms
+----------------------
+
+
+All versions completed!
+
+Execution Time Summary (in milliseconds):
+================================================================================
+Version    Gaussian Blur   Unsharp Masking CLAHE           Total          
+--------------------------------------------------------------------------------
+sequential 3110            1179            2102            7238           
+openmp     987             50              150             2001           
+mpi        1362            184             869             3166           
+cuda       204             63              240             507            
+================================================================================
+
+Speedup relative to Sequential Version:
+--------------------------------------------------------------------------------
+openmp    : 3.62x faster
+mpi       : 2.29x faster
+cuda      : 14.28x faster
+
+================================================================================
+
+Image: 22.bmp
+--------------------------------------------------------------------------------
+
+================================================================================
+Running Sequential Version...
+Command: ./filter_seq input\22.bmp unsharp_clahe 5 1.0 1.5 22
+================================================================================
+
+Image size: 500x332
+Original sigma: 1
+Scale factor: 2.96578
+Scaled sigma: 2.96578
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 763 ms
+Blurred image has been saved as 'output/seq_22_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 241 ms
+Unsharpened image has been saved as 'output/seq_22_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 612 ms
+Final image (unsharp + CLAHE) has been saved as 'output/seq_22_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        763 ms
+Unsharp Masking:      241 ms
+CLAHE:               612 ms
+----------------------
+Total Time:          1814 ms
+----------------------
+
+
+================================================================================
+Running OpenMP Version...
+Command: ./filter_omp input\22.bmp unsharp_clahe 5 1.0 1.5 22
+================================================================================
+
+Image size: 500x332
+Original sigma: 1
+Scale factor: 2.96578
+Scaled sigma: 2.96578
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 273 ms
+Blurred image has been saved as 'output/omp_22_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 16 ms
+Unsharpened image has been saved as 'output/omp_22_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 55 ms
+Final image (unsharp + CLAHE) has been saved as 'output/omp_22_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        273 ms
+Unsharp Masking:       16 ms
+CLAHE:                55 ms
+----------------------
+Total Time:           624 ms
+----------------------
+
+
+================================================================================
+Running MPI Version...
+Command: mpiexec -n 1 ./filter_mpi input\22.bmp unsharp_clahe 5 1.0 1.5 22
+================================================================================
+
+Image size: 500x332
+Original sigma: 1
+Scale factor: 2.96578
+Scaled sigma: 2.96578
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 383 ms
+Blurred image has been saved as 'output/mpi_22_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 52 ms
+Unsharpened image has been saved as 'output/mpi_22_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 223 ms
+Final image (unsharp + CLAHE) has been saved as 'output/mpi_22_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        383 ms
+Unsharp Masking:       52 ms
+CLAHE:               223 ms
+----------------------
+Total Time:           863 ms
+----------------------
+
+
+================================================================================
+Running CUDA Version...
+Command: ./filter_cuda input\22.bmp unsharp_clahe 5 1.0 1.5 22
+================================================================================
+
+Image size: 500x332
+Original sigma: 1
+Scale factor: 2.96578
+Scaled sigma: 2.96578
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 427 ms
+Blurred image has been saved as 'output/cuda_22_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 22 ms
+Unsharpened image has been saved as 'output/cuda_22_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 79 ms
+Final image (unsharp + CLAHE) has been saved as 'output/cuda_22_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        427 ms
+Unsharp Masking:       22 ms
+CLAHE:                79 ms
+----------------------
+Total Time:           528 ms
+----------------------
+
+
+All versions completed!
+
+Execution Time Summary (in milliseconds):
+================================================================================
+Version    Gaussian Blur   Unsharp Masking CLAHE           Total          
+--------------------------------------------------------------------------------
+sequential 763             241             612             1814           
+openmp     273             16              55              624            
+mpi        383             52              223             863            
+cuda       427             22              79              528            
+================================================================================
+
+Speedup relative to Sequential Version:
+--------------------------------------------------------------------------------
+openmp    : 2.91x faster
+mpi       : 2.10x faster
+cuda      : 3.44x faster
+
+================================================================================
+
+Image: 23.bmp
+--------------------------------------------------------------------------------
+
+================================================================================
+Running Sequential Version...
+Command: ./filter_seq input\23.bmp unsharp_clahe 5 1.0 1.5 23
+================================================================================
+
+Image size: 1140x780
+Original sigma: 1
+Scale factor: 4.15482
+Scaled sigma: 4.15482
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 3997 ms
+Blurred image has been saved as 'output/seq_23_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 1169 ms
+Unsharpened image has been saved as 'output/seq_23_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 2733 ms
+Final image (unsharp + CLAHE) has been saved as 'output/seq_23_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:       3997 ms
+Unsharp Masking:     1169 ms
+CLAHE:              2733 ms
+----------------------
+Total Time:          9002 ms
+----------------------
+
+
+================================================================================
+Running OpenMP Version...
+Command: ./filter_omp input\23.bmp unsharp_clahe 5 1.0 1.5 23
+================================================================================
+
+Image size: 1140x780
+Original sigma: 1
+Scale factor: 4.15482
+Scaled sigma: 4.15482
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 1381 ms
+Blurred image has been saved as 'output/omp_23_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 72 ms
+Unsharpened image has been saved as 'output/omp_23_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 268 ms
+Final image (unsharp + CLAHE) has been saved as 'output/omp_23_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:       1381 ms
+Unsharp Masking:       72 ms
+CLAHE:               268 ms
+----------------------
+Total Time:          2871 ms
+----------------------
+
+
+================================================================================
+Running MPI Version...
+Command: mpiexec -n 1 ./filter_mpi input\23.bmp unsharp_clahe 5 1.0 1.5 23
+================================================================================
+
+Image size: 1140x780
+Original sigma: 1
+Scale factor: 4.15482
+Scaled sigma: 4.15482
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 1881 ms
+Blurred image has been saved as 'output/mpi_23_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 251 ms
+Unsharpened image has been saved as 'output/mpi_23_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 1178 ms
+Final image (unsharp + CLAHE) has been saved as 'output/mpi_23_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:       1881 ms
+Unsharp Masking:      251 ms
+CLAHE:              1178 ms
+----------------------
+Total Time:          4398 ms
+----------------------
+
+
+================================================================================
+Running CUDA Version...
+Command: ./filter_cuda input\23.bmp unsharp_clahe 5 1.0 1.5 23
+================================================================================
+
+Image size: 1140x780
+Original sigma: 1
+Scale factor: 4.15482
+Scaled sigma: 4.15482
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 354 ms
+Blurred image has been saved as 'output/cuda_23_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 80 ms
+Unsharpened image has been saved as 'output/cuda_23_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 296 ms
+Final image (unsharp + CLAHE) has been saved as 'output/cuda_23_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        354 ms
+Unsharp Masking:       80 ms
+CLAHE:               296 ms
+----------------------
+Total Time:           730 ms
+----------------------
+
+
+All versions completed!
+
+Execution Time Summary (in milliseconds):
+================================================================================
+Version    Gaussian Blur   Unsharp Masking CLAHE           Total          
+--------------------------------------------------------------------------------
+sequential 3997            1169            2733            9002           
+openmp     1381            72              268             2871           
+mpi        1881            251             1178            4398           
+cuda       354             80              296             730            
+================================================================================
+
+Speedup relative to Sequential Version:
+--------------------------------------------------------------------------------
+openmp    : 3.14x faster
+mpi       : 2.05x faster
+cuda      : 12.33x faster
+
+================================================================================
+
+Image: 24.bmp
+--------------------------------------------------------------------------------
+
+================================================================================
+Running Sequential Version...
+Command: ./filter_seq input\24.bmp unsharp_clahe 5 1.0 1.5 24
+================================================================================
+
+Image size: 2560x1706
+Original sigma: 1
+Scale factor: 5.32193
+Scaled sigma: 5.32193
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 20637 ms
+Blurred image has been saved as 'output/seq_24_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 6123 ms
+Unsharpened image has been saved as 'output/seq_24_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 13890 ms
+Final image (unsharp + CLAHE) has been saved as 'output/seq_24_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:      20637 ms
+Unsharp Masking:     6123 ms
+CLAHE:             13890 ms
+----------------------
+Total Time:         46198 ms
+----------------------
+
+
+================================================================================
+Running OpenMP Version...
+Command: ./filter_omp input\24.bmp unsharp_clahe 5 1.0 1.5 24
+================================================================================
+
+Image size: 2560x1706
+Original sigma: 1
+Scale factor: 5.32193
+Scaled sigma: 5.32193
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 4640 ms
+Blurred image has been saved as 'output/omp_24_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 314 ms
+Unsharpened image has been saved as 'output/omp_24_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 954 ms
+Final image (unsharp + CLAHE) has been saved as 'output/omp_24_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:       4640 ms
+Unsharp Masking:      314 ms
+CLAHE:               954 ms
+----------------------
+Total Time:         11344 ms
+----------------------
+
+
+================================================================================
+Running MPI Version...
+Command: mpiexec -n 1 ./filter_mpi input\24.bmp unsharp_clahe 5 1.0 1.5 24
+================================================================================
+
+Image size: 2560x1706
+Original sigma: 1
+Scale factor: 5.32193
+Scaled sigma: 5.32193
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 9964 ms
+Blurred image has been saved as 'output/mpi_24_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 1213 ms
+Unsharpened image has been saved as 'output/mpi_24_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 5829 ms
+Final image (unsharp + CLAHE) has been saved as 'output/mpi_24_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:       9964 ms
+Unsharp Masking:     1213 ms
+CLAHE:              5829 ms
+----------------------
+Total Time:         22557 ms
+----------------------
+
+
+================================================================================
+Running CUDA Version...
+Command: ./filter_cuda input\24.bmp unsharp_clahe 5 1.0 1.5 24
+================================================================================
+
+Image size: 2560x1706
+Original sigma: 1
+Scale factor: 5.32193
+Scaled sigma: 5.32193
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 977 ms
+Blurred image has been saved as 'output/cuda_24_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 437 ms
+Unsharpened image has been saved as 'output/cuda_24_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 1457 ms
+Final image (unsharp + CLAHE) has been saved as 'output/cuda_24_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        977 ms
+Unsharp Masking:      437 ms
+CLAHE:              1457 ms
+----------------------
+Total Time:          2871 ms
+----------------------
+
+
+All versions completed!
+
+Execution Time Summary (in milliseconds):
+================================================================================
+Version    Gaussian Blur   Unsharp Masking CLAHE           Total          
+--------------------------------------------------------------------------------
+sequential 20637           6123            13890           46198          
+openmp     4640            314             954             11344          
+mpi        9964            1213            5829            22557          
+cuda       977             437             1457            2871           
+================================================================================
+
+Speedup relative to Sequential Version:
+--------------------------------------------------------------------------------
+openmp    : 4.07x faster
+mpi       : 2.05x faster
+cuda      : 16.09x faster
+
+================================================================================
+
+Image: 26.bmp
+--------------------------------------------------------------------------------
+
+================================================================================
+Running Sequential Version...
+Command: ./filter_seq input\26.bmp unsharp_clahe 5 1.0 1.5 26
+================================================================================
+
+Image size: 2500x1656
+Original sigma: 1
+Scale factor: 5.28771
+Scaled sigma: 5.28771
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 21087 ms
+Blurred image has been saved as 'output/seq_26_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 7172 ms
+Unsharpened image has been saved as 'output/seq_26_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 15158 ms
+Final image (unsharp + CLAHE) has been saved as 'output/seq_26_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:      21087 ms
+Unsharp Masking:     7172 ms
+CLAHE:             15158 ms
+----------------------
+Total Time:         49683 ms
+----------------------
+
+
+================================================================================
+Running OpenMP Version...
+Command: ./filter_omp input\26.bmp unsharp_clahe 5 1.0 1.5 26
+================================================================================
+
+Image size: 2500x1656
+Original sigma: 1
+Scale factor: 5.28771
+Scaled sigma: 5.28771
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 4751 ms
+Blurred image has been saved as 'output/omp_26_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 274 ms
+Unsharpened image has been saved as 'output/omp_26_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 897 ms
+Final image (unsharp + CLAHE) has been saved as 'output/omp_26_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:       4751 ms
+Unsharp Masking:      274 ms
+CLAHE:               897 ms
+----------------------
+Total Time:         11916 ms
+----------------------
+
+
+================================================================================
+Running MPI Version...
+Command: mpiexec -n 1 ./filter_mpi input\26.bmp unsharp_clahe 5 1.0 1.5 26
+================================================================================
+
+Image size: 2500x1656
+Original sigma: 1
+Scale factor: 5.28771
+Scaled sigma: 5.28771
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 9687 ms
+Blurred image has been saved as 'output/mpi_26_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 1583 ms
+Unsharpened image has been saved as 'output/mpi_26_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 6360 ms
+Final image (unsharp + CLAHE) has been saved as 'output/mpi_26_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:       9687 ms
+Unsharp Masking:     1583 ms
+CLAHE:              6360 ms
+----------------------
+Total Time:         23987 ms
+----------------------
+
+
+================================================================================
+Running CUDA Version...
+Command: ./filter_cuda input\26.bmp unsharp_clahe 5 1.0 1.5 26
+================================================================================
+
+Image size: 2500x1656
+Original sigma: 1
+Scale factor: 5.28771
+Scaled sigma: 5.28771
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 615 ms
+Blurred image has been saved as 'output/cuda_26_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 378 ms
+Unsharpened image has been saved as 'output/cuda_26_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 1429 ms
+Final image (unsharp + CLAHE) has been saved as 'output/cuda_26_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        615 ms
+Unsharp Masking:      378 ms
+CLAHE:              1429 ms
+----------------------
+Total Time:          2422 ms
+----------------------
+
+
+All versions completed!
+
+Execution Time Summary (in milliseconds):
+================================================================================
+Version    Gaussian Blur   Unsharp Masking CLAHE           Total          
+--------------------------------------------------------------------------------
+sequential 21087           7172            15158           49683          
+openmp     4751            274             897             11916          
+mpi        9687            1583            6360            23987          
+cuda       615             378             1429            2422           
+================================================================================
+
+Speedup relative to Sequential Version:
+--------------------------------------------------------------------------------
+openmp    : 4.17x faster
+mpi       : 2.07x faster
+cuda      : 20.51x faster
+
+================================================================================
+
+Image: 3.bmp
+--------------------------------------------------------------------------------
+
+================================================================================
+Running Sequential Version...
+Command: ./filter_seq input\3.bmp unsharp_clahe 5 1.0 1.5 3
+================================================================================
+
+Image size: 1200x800
+Original sigma: 1
+Scale factor: 4.22882
+Scaled sigma: 4.22882
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 4610 ms
+Blurred image has been saved as 'output/seq_3_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 1393 ms
+Unsharpened image has been saved as 'output/seq_3_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 2910 ms
+Final image (unsharp + CLAHE) has been saved as 'output/seq_3_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:       4610 ms
+Unsharp Masking:     1393 ms
+CLAHE:              2910 ms
+----------------------
+Total Time:         10200 ms
+----------------------
+
+
+================================================================================
+Running OpenMP Version...
+Command: ./filter_omp input\3.bmp unsharp_clahe 5 1.0 1.5 3
+================================================================================
+
+Image size: 1200x800
+Original sigma: 1
+Scale factor: 4.22882
+Scaled sigma: 4.22882
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 1317 ms
+Blurred image has been saved as 'output/omp_3_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 54 ms
+Unsharpened image has been saved as 'output/omp_3_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 249 ms
+Final image (unsharp + CLAHE) has been saved as 'output/omp_3_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:       1317 ms
+Unsharp Masking:       54 ms
+CLAHE:               249 ms
+----------------------
+Total Time:          2870 ms
+----------------------
+
+
+================================================================================
+Running MPI Version...
+Command: mpiexec -n 1 ./filter_mpi input\3.bmp unsharp_clahe 5 1.0 1.5 3
+================================================================================
+
+Image size: 1200x800
+Original sigma: 1
+Scale factor: 4.22882
+Scaled sigma: 4.22882
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 2072 ms
+Blurred image has been saved as 'output/mpi_3_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 272 ms
+Unsharpened image has been saved as 'output/mpi_3_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 1300 ms
+Final image (unsharp + CLAHE) has been saved as 'output/mpi_3_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:       2072 ms
+Unsharp Masking:      272 ms
+CLAHE:              1300 ms
+----------------------
+Total Time:          4806 ms
+----------------------
+
+
+================================================================================
+Running CUDA Version...
+Command: ./filter_cuda input\3.bmp unsharp_clahe 5 1.0 1.5 3
+================================================================================
+
+Image size: 1200x800
+Original sigma: 1
+Scale factor: 4.22882
+Scaled sigma: 4.22882
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 329 ms
+Blurred image has been saved as 'output/cuda_3_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 90 ms
+Unsharpened image has been saved as 'output/cuda_3_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 359 ms
+Final image (unsharp + CLAHE) has been saved as 'output/cuda_3_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        329 ms
+Unsharp Masking:       90 ms
+CLAHE:               359 ms
+----------------------
+Total Time:           778 ms
+----------------------
+
+
+All versions completed!
+
+Execution Time Summary (in milliseconds):
+================================================================================
+Version    Gaussian Blur   Unsharp Masking CLAHE           Total          
+--------------------------------------------------------------------------------
+sequential 4610            1393            2910            10200          
+openmp     1317            54              249             2870           
+mpi        2072            272             1300            4806           
+cuda       329             90              359             778            
+================================================================================
+
+Speedup relative to Sequential Version:
+--------------------------------------------------------------------------------
+openmp    : 3.55x faster
+mpi       : 2.12x faster
+cuda      : 13.11x faster
+
+================================================================================
+
+Image: 30.bmp
+--------------------------------------------------------------------------------
+
+================================================================================
+Running Sequential Version...
+Command: ./filter_seq input\30.bmp unsharp_clahe 5 1.0 1.5 30
+================================================================================
+
+Image size: 620x350
+Original sigma: 1
+Scale factor: 3.27612
+Scaled sigma: 3.27612
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 993 ms
+Blurred image has been saved as 'output/seq_30_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 270 ms
+Unsharpened image has been saved as 'output/seq_30_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 654 ms
+Final image (unsharp + CLAHE) has been saved as 'output/seq_30_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        993 ms
+Unsharp Masking:      270 ms
+CLAHE:               654 ms
+----------------------
+Total Time:          2177 ms
+----------------------
+
+
+================================================================================
+Running OpenMP Version...
+Command: ./filter_omp input\30.bmp unsharp_clahe 5 1.0 1.5 30
+================================================================================
+
+Image size: 620x350
+Original sigma: 1
+Scale factor: 3.27612
+Scaled sigma: 3.27612
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 340 ms
+Blurred image has been saved as 'output/omp_30_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 23 ms
+Unsharpened image has been saved as 'output/omp_30_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 66 ms
+Final image (unsharp + CLAHE) has been saved as 'output/omp_30_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        340 ms
+Unsharp Masking:       23 ms
+CLAHE:                66 ms
+----------------------
+Total Time:           745 ms
+----------------------
+
+
+================================================================================
+Running MPI Version...
+Command: mpiexec -n 1 ./filter_mpi input\30.bmp unsharp_clahe 5 1.0 1.5 30
+================================================================================
+
+Image size: 620x350
+Original sigma: 1
+Scale factor: 3.27612
+Scaled sigma: 3.27612
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 440 ms
+Blurred image has been saved as 'output/mpi_30_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 71 ms
+Unsharpened image has been saved as 'output/mpi_30_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 288 ms
+Final image (unsharp + CLAHE) has been saved as 'output/mpi_30_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        440 ms
+Unsharp Masking:       71 ms
+CLAHE:               288 ms
+----------------------
+Total Time:          1069 ms
+----------------------
+
+
+================================================================================
+Running CUDA Version...
+Command: ./filter_cuda input\30.bmp unsharp_clahe 5 1.0 1.5 30
+================================================================================
+
+Image size: 620x350
+Original sigma: 1
+Scale factor: 3.27612
+Scaled sigma: 3.27612
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 145 ms
+Blurred image has been saved as 'output/cuda_30_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 16 ms
+Unsharpened image has been saved as 'output/cuda_30_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 68 ms
+Final image (unsharp + CLAHE) has been saved as 'output/cuda_30_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        145 ms
+Unsharp Masking:       16 ms
+CLAHE:                68 ms
+----------------------
+Total Time:           229 ms
+----------------------
+
+
+All versions completed!
+
+Execution Time Summary (in milliseconds):
+================================================================================
+Version    Gaussian Blur   Unsharp Masking CLAHE           Total          
+--------------------------------------------------------------------------------
+sequential 993             270             654             2177           
+openmp     340             23              66              745            
+mpi        440             71              288             1069           
+cuda       145             16              68              229            
+================================================================================
+
+Speedup relative to Sequential Version:
+--------------------------------------------------------------------------------
+openmp    : 2.92x faster
+mpi       : 2.04x faster
+cuda      : 9.51x faster
+
+================================================================================
+
+Image: 31.bmp
+--------------------------------------------------------------------------------
+
+================================================================================
+Running Sequential Version...
+Command: ./filter_seq input\31.bmp unsharp_clahe 5 1.0 1.5 31
+================================================================================
+
+Image size: 5120x2880
+Original sigma: 1
+Scale factor: 6.32193
+Scaled sigma: 6.32193
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 138365 ms
+Blurred image has been saved as 'output/seq_31_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 26709 ms
+Unsharpened image has been saved as 'output/seq_31_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 45517 ms
+Final image (unsharp + CLAHE) has been saved as 'output/seq_31_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:     138365 ms
+Unsharp Masking:    26709 ms
+CLAHE:             45517 ms
+----------------------
+Total Time:        231353 ms
+----------------------
+
+
+================================================================================
+Running OpenMP Version...
+Command: ./filter_omp input\31.bmp unsharp_clahe 5 1.0 1.5 31
+================================================================================
+
+Image size: 5120x2880
+Original sigma: 1
+Scale factor: 6.32193
+Scaled sigma: 6.32193
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 14439 ms
+Blurred image has been saved as 'output/omp_31_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 693 ms
+Unsharpened image has been saved as 'output/omp_31_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 2801 ms
+Final image (unsharp + CLAHE) has been saved as 'output/omp_31_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:      14439 ms
+Unsharp Masking:      693 ms
+CLAHE:              2801 ms
+----------------------
+Total Time:         34082 ms
+----------------------
+
+
+================================================================================
+Running MPI Version...
+Command: mpiexec -n 1 ./filter_mpi input\31.bmp unsharp_clahe 5 1.0 1.5 31
+================================================================================
+
+Image size: 5120x2880
+Original sigma: 1
+Scale factor: 6.32193
+Scaled sigma: 6.32193
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 37692 ms
+Blurred image has been saved as 'output/mpi_31_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 4074 ms
+Unsharpened image has been saved as 'output/mpi_31_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 20024 ms
+Final image (unsharp + CLAHE) has been saved as 'output/mpi_31_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:      37692 ms
+Unsharp Masking:     4074 ms
+CLAHE:             20024 ms
+----------------------
+Total Time:         78507 ms
+----------------------
+
+
+================================================================================
+Running CUDA Version...
+Command: ./filter_cuda input\31.bmp unsharp_clahe 5 1.0 1.5 31
+================================================================================
+
+Image size: 5120x2880
+Original sigma: 1
+Scale factor: 6.32193
+Scaled sigma: 6.32193
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 1494 ms
+Blurred image has been saved as 'output/cuda_31_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 1364 ms
+Unsharpened image has been saved as 'output/cuda_31_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 5887 ms
+Final image (unsharp + CLAHE) has been saved as 'output/cuda_31_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:       1494 ms
+Unsharp Masking:     1364 ms
+CLAHE:              5887 ms
+----------------------
+Total Time:          8745 ms
+----------------------
+
+
+All versions completed!
+
+Execution Time Summary (in milliseconds):
+================================================================================
+Version    Gaussian Blur   Unsharp Masking CLAHE           Total          
+--------------------------------------------------------------------------------
+sequential 138365          26709           45517           231353         
+openmp     14439           693             2801            34082          
+mpi        37692           4074            20024           78507          
+cuda       1494            1364            5887            8745           
+================================================================================
+
+Speedup relative to Sequential Version:
+--------------------------------------------------------------------------------
+openmp    : 6.79x faster
+mpi       : 2.95x faster
+cuda      : 26.46x faster
+
+================================================================================
+
+Image: 32.bmp
+--------------------------------------------------------------------------------
+
+================================================================================
+Running Sequential Version...
+Command: ./filter_seq input\32.bmp unsharp_clahe 5 1.0 1.5 32
+================================================================================
+
+Image size: 1024x1024
+Original sigma: 1
+Scale factor: 4
+Scaled sigma: 4
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 4644 ms
+Blurred image has been saved as 'output/seq_32_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 1346 ms
+Unsharpened image has been saved as 'output/seq_32_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 3268 ms
+Final image (unsharp + CLAHE) has been saved as 'output/seq_32_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:       4644 ms
+Unsharp Masking:     1346 ms
+CLAHE:              3268 ms
+----------------------
+Total Time:         10545 ms
+----------------------
+
+
+================================================================================
+Running OpenMP Version...
+Command: ./filter_omp input\32.bmp unsharp_clahe 5 1.0 1.5 32
+================================================================================
+
+Image size: 1024x1024
+Original sigma: 1
+Scale factor: 4
+Scaled sigma: 4
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 1474 ms
+Blurred image has been saved as 'output/omp_32_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 80 ms
+Unsharpened image has been saved as 'output/omp_32_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 277 ms
+Final image (unsharp + CLAHE) has been saved as 'output/omp_32_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:       1474 ms
+Unsharp Masking:       80 ms
+CLAHE:               277 ms
+----------------------
+Total Time:          3144 ms
+----------------------
+
+
+================================================================================
+Running MPI Version...
+Command: mpiexec -n 1 ./filter_mpi input\32.bmp unsharp_clahe 5 1.0 1.5 32
+================================================================================
+
+Image size: 1024x1024
+Original sigma: 1
+Scale factor: 4
+Scaled sigma: 4
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 2143 ms
+Blurred image has been saved as 'output/mpi_32_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 313 ms
+Unsharpened image has been saved as 'output/mpi_32_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 1402 ms
+Final image (unsharp + CLAHE) has been saved as 'output/mpi_32_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:       2143 ms
+Unsharp Masking:      313 ms
+CLAHE:              1402 ms
+----------------------
+Total Time:          5121 ms
+----------------------
+
+
+================================================================================
+Running CUDA Version...
+Command: ./filter_cuda input\32.bmp unsharp_clahe 5 1.0 1.5 32
+================================================================================
+
+Image size: 1024x1024
+Original sigma: 1
+Scale factor: 4
+Scaled sigma: 4
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 507 ms
+Blurred image has been saved as 'output/cuda_32_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 113 ms
+Unsharpened image has been saved as 'output/cuda_32_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 375 ms
+Final image (unsharp + CLAHE) has been saved as 'output/cuda_32_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        507 ms
+Unsharp Masking:      113 ms
+CLAHE:               375 ms
+----------------------
+Total Time:           995 ms
+----------------------
+
+
+All versions completed!
+
+Execution Time Summary (in milliseconds):
+================================================================================
+Version    Gaussian Blur   Unsharp Masking CLAHE           Total          
+--------------------------------------------------------------------------------
+sequential 4644            1346            3268            10545          
+openmp     1474            80              277             3144           
+mpi        2143            313             1402            5121           
+cuda       507             113             375             995            
+================================================================================
+
+Speedup relative to Sequential Version:
+--------------------------------------------------------------------------------
+openmp    : 3.35x faster
+mpi       : 2.06x faster
+cuda      : 10.60x faster
+
+================================================================================
+
+Image: 33.bmp
+--------------------------------------------------------------------------------
+
+================================================================================
+Running Sequential Version...
+Command: ./filter_seq input\33.bmp unsharp_clahe 5 1.0 1.5 33
+================================================================================
+
+Image size: 1000x667
+Original sigma: 1
+Scale factor: 3.96578
+Scaled sigma: 3.96578
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 2938 ms
+Blurred image has been saved as 'output/seq_33_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 884 ms
+Unsharpened image has been saved as 'output/seq_33_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 2058 ms
+Final image (unsharp + CLAHE) has been saved as 'output/seq_33_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:       2938 ms
+Unsharp Masking:      884 ms
+CLAHE:              2058 ms
+----------------------
+Total Time:          6717 ms
+----------------------
+
+
+================================================================================
+Running OpenMP Version...
+Command: ./filter_omp input\33.bmp unsharp_clahe 5 1.0 1.5 33
+================================================================================
+
+Image size: 1000x667
+Original sigma: 1
+Scale factor: 3.96578
+Scaled sigma: 3.96578
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 933 ms
+Blurred image has been saved as 'output/omp_33_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 61 ms
+Unsharpened image has been saved as 'output/omp_33_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 194 ms
+Final image (unsharp + CLAHE) has been saved as 'output/omp_33_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        933 ms
+Unsharp Masking:       61 ms
+CLAHE:               194 ms
+----------------------
+Total Time:          2018 ms
+----------------------
+
+
+================================================================================
+Running MPI Version...
+Command: mpiexec -n 1 ./filter_mpi input\33.bmp unsharp_clahe 5 1.0 1.5 33
+================================================================================
+
+Image size: 1000x667
+Original sigma: 1
+Scale factor: 3.96578
+Scaled sigma: 3.96578
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 1399 ms
+Blurred image has been saved as 'output/mpi_33_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 198 ms
+Unsharpened image has been saved as 'output/mpi_33_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 970 ms
+Final image (unsharp + CLAHE) has been saved as 'output/mpi_33_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:       1399 ms
+Unsharp Masking:      198 ms
+CLAHE:               970 ms
+----------------------
+Total Time:          3347 ms
+----------------------
+
+
+================================================================================
+Running CUDA Version...
+Command: ./filter_cuda input\33.bmp unsharp_clahe 5 1.0 1.5 33
+================================================================================
+
+Image size: 1000x667
+Original sigma: 1
+Scale factor: 3.96578
+Scaled sigma: 3.96578
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 577 ms
+Blurred image has been saved as 'output/cuda_33_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 67 ms
+Unsharpened image has been saved as 'output/cuda_33_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 236 ms
+Final image (unsharp + CLAHE) has been saved as 'output/cuda_33_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        577 ms
+Unsharp Masking:       67 ms
+CLAHE:               236 ms
+----------------------
+Total Time:           880 ms
+----------------------
+
+
+All versions completed!
+
+Execution Time Summary (in milliseconds):
+================================================================================
+Version    Gaussian Blur   Unsharp Masking CLAHE           Total          
+--------------------------------------------------------------------------------
+sequential 2938            884             2058            6717           
+openmp     933             61              194             2018           
+mpi        1399            198             970             3347           
+cuda       577             67              236             880            
+================================================================================
+
+Speedup relative to Sequential Version:
+--------------------------------------------------------------------------------
+openmp    : 3.33x faster
+mpi       : 2.01x faster
+cuda      : 7.63x faster
+
+================================================================================
+
+Image: 34.bmp
+--------------------------------------------------------------------------------
+
+================================================================================
+Running Sequential Version...
+Command: ./filter_seq input\34.bmp unsharp_clahe 5 1.0 1.5 34
+================================================================================
+
+Image size: 2124x1413
+Original sigma: 1
+Scale factor: 5.05257
+Scaled sigma: 5.05257
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 14487 ms
+Blurred image has been saved as 'output/seq_34_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 4191 ms
+Unsharpened image has been saved as 'output/seq_34_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 9952 ms
+Final image (unsharp + CLAHE) has been saved as 'output/seq_34_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:      14487 ms
+Unsharp Masking:     4191 ms
+CLAHE:              9952 ms
+----------------------
+Total Time:         32388 ms
+----------------------
+
+
+================================================================================
+Running OpenMP Version...
+Command: ./filter_omp input\34.bmp unsharp_clahe 5 1.0 1.5 34
+================================================================================
+
+Image size: 2124x1413
+Original sigma: 1
+Scale factor: 5.05257
+Scaled sigma: 5.05257
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 3574 ms
+Blurred image has been saved as 'output/omp_34_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 203 ms
+Unsharpened image has been saved as 'output/omp_34_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 741 ms
+Final image (unsharp + CLAHE) has been saved as 'output/omp_34_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:       3574 ms
+Unsharp Masking:      203 ms
+CLAHE:               741 ms
+----------------------
+Total Time:          8253 ms
+----------------------
+
+
+================================================================================
+Running MPI Version...
+Command: mpiexec -n 1 ./filter_mpi input\34.bmp unsharp_clahe 5 1.0 1.5 34
+================================================================================
+
+Image size: 2124x1413
+Original sigma: 1
+Scale factor: 5.05257
+Scaled sigma: 5.05257
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 6810 ms
+Blurred image has been saved as 'output/mpi_34_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 787 ms
+Unsharpened image has been saved as 'output/mpi_34_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 3913 ms
+Final image (unsharp + CLAHE) has been saved as 'output/mpi_34_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:       6810 ms
+Unsharp Masking:      787 ms
+CLAHE:              3913 ms
+----------------------
+Total Time:         15325 ms
+----------------------
+
+
+================================================================================
+Running CUDA Version...
+Command: ./filter_cuda input\34.bmp unsharp_clahe 5 1.0 1.5 34
+================================================================================
+
+Image size: 2124x1413
+Original sigma: 1
+Scale factor: 5.05257
+Scaled sigma: 5.05257
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 484 ms
+Blurred image has been saved as 'output/cuda_34_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 235 ms
+Unsharpened image has been saved as 'output/cuda_34_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 961 ms
+Final image (unsharp + CLAHE) has been saved as 'output/cuda_34_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        484 ms
+Unsharp Masking:      235 ms
+CLAHE:               961 ms
+----------------------
+Total Time:          1680 ms
+----------------------
+
+
+All versions completed!
+
+Execution Time Summary (in milliseconds):
+================================================================================
+Version    Gaussian Blur   Unsharp Masking CLAHE           Total          
+--------------------------------------------------------------------------------
+sequential 14487           4191            9952            32388          
+openmp     3574            203             741             8253           
+mpi        6810            787             3913            15325          
+cuda       484             235             961             1680           
+================================================================================
+
+Speedup relative to Sequential Version:
+--------------------------------------------------------------------------------
+openmp    : 3.92x faster
+mpi       : 2.11x faster
+cuda      : 19.28x faster
+
+================================================================================
+
+Image: 36.bmp
+--------------------------------------------------------------------------------
+
+================================================================================
+Running Sequential Version...
+Command: ./filter_seq input\36.bmp unsharp_clahe 5 1.0 1.5 36
+================================================================================
+
+Image size: 3000x1990
+Original sigma: 1
+Scale factor: 5.55075
+Scaled sigma: 5.55075
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 28791 ms
+Blurred image has been saved as 'output/seq_36_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 11130 ms
+Unsharpened image has been saved as 'output/seq_36_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 22662 ms
+Final image (unsharp + CLAHE) has been saved as 'output/seq_36_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:      28791 ms
+Unsharp Masking:    11130 ms
+CLAHE:             22662 ms
+----------------------
+Total Time:         70852 ms
+----------------------
+
+
+================================================================================
+Running OpenMP Version...
+Command: ./filter_omp input\36.bmp unsharp_clahe 5 1.0 1.5 36
+================================================================================
+
+Image size: 3000x1990
+Original sigma: 1
+Scale factor: 5.55075
+Scaled sigma: 5.55075
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 6256 ms
+Blurred image has been saved as 'output/omp_36_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 345 ms
+Unsharpened image has been saved as 'output/omp_36_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 1264 ms
+Final image (unsharp + CLAHE) has been saved as 'output/omp_36_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:       6256 ms
+Unsharp Masking:      345 ms
+CLAHE:              1264 ms
+----------------------
+Total Time:         15261 ms
+----------------------
+
+
+================================================================================
+Running MPI Version...
+Command: mpiexec -n 1 ./filter_mpi input\36.bmp unsharp_clahe 5 1.0 1.5 36
+================================================================================
+
+Image size: 3000x1990
+Original sigma: 1
+Scale factor: 5.55075
+Scaled sigma: 5.55075
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 14669 ms
+Blurred image has been saved as 'output/mpi_36_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 1539 ms
+Unsharpened image has been saved as 'output/mpi_36_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 7000 ms
+Final image (unsharp + CLAHE) has been saved as 'output/mpi_36_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:      14669 ms
+Unsharp Masking:     1539 ms
+CLAHE:              7000 ms
+----------------------
+Total Time:         29516 ms
+----------------------
+
+
+================================================================================
+Running CUDA Version...
+Command: ./filter_cuda input\36.bmp unsharp_clahe 5 1.0 1.5 36
+================================================================================
+
+Image size: 3000x1990
+Original sigma: 1
+Scale factor: 5.55075
+Scaled sigma: 5.55075
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 400 ms
+Blurred image has been saved as 'output/cuda_36_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 475 ms
+Unsharpened image has been saved as 'output/cuda_36_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 1846 ms
+Final image (unsharp + CLAHE) has been saved as 'output/cuda_36_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        400 ms
+Unsharp Masking:      475 ms
+CLAHE:              1846 ms
+----------------------
+Total Time:          2721 ms
+----------------------
+
+
+All versions completed!
+
+Execution Time Summary (in milliseconds):
+================================================================================
+Version    Gaussian Blur   Unsharp Masking CLAHE           Total          
+--------------------------------------------------------------------------------
+sequential 28791           11130           22662           70852          
+openmp     6256            345             1264            15261          
+mpi        14669           1539            7000            29516          
+cuda       400             475             1846            2721           
+================================================================================
+
+Speedup relative to Sequential Version:
+--------------------------------------------------------------------------------
+openmp    : 4.64x faster
+mpi       : 2.40x faster
+cuda      : 26.04x faster
+
+================================================================================
+
+Image: 38.bmp
+--------------------------------------------------------------------------------
+
+================================================================================
+Running Sequential Version...
+Command: ./filter_seq input\38.bmp unsharp_clahe 5 1.0 1.5 38
+================================================================================
+
+Image size: 500x333
+Original sigma: 1
+Scale factor: 2.96578
+Scaled sigma: 2.96578
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 621 ms
+Blurred image has been saved as 'output/seq_38_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 226 ms
+Unsharpened image has been saved as 'output/seq_38_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 530 ms
+Final image (unsharp + CLAHE) has been saved as 'output/seq_38_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        621 ms
+Unsharp Masking:      226 ms
+CLAHE:               530 ms
+----------------------
+Total Time:          1556 ms
+----------------------
+
+
+================================================================================
+Running OpenMP Version...
+Command: ./filter_omp input\38.bmp unsharp_clahe 5 1.0 1.5 38
+================================================================================
+
+Image size: 500x333
+Original sigma: 1
+Scale factor: 2.96578
+Scaled sigma: 2.96578
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 193 ms
+Blurred image has been saved as 'output/omp_38_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 12 ms
+Unsharpened image has been saved as 'output/omp_38_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 41 ms
+Final image (unsharp + CLAHE) has been saved as 'output/omp_38_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        193 ms
+Unsharp Masking:       12 ms
+CLAHE:                41 ms
+----------------------
+Total Time:           484 ms
+----------------------
+
+
+================================================================================
+Running MPI Version...
+Command: mpiexec -n 1 ./filter_mpi input\38.bmp unsharp_clahe 5 1.0 1.5 38
+================================================================================
+
+Image size: 500x333
+Original sigma: 1
+Scale factor: 2.96578
+Scaled sigma: 2.96578
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 312 ms
+Blurred image has been saved as 'output/mpi_38_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 55 ms
+Unsharpened image has been saved as 'output/mpi_38_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 208 ms
+Final image (unsharp + CLAHE) has been saved as 'output/mpi_38_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        312 ms
+Unsharp Masking:       55 ms
+CLAHE:               208 ms
+----------------------
+Total Time:           816 ms
+----------------------
+
+
+================================================================================
+Running CUDA Version...
+Command: ./filter_cuda input\38.bmp unsharp_clahe 5 1.0 1.5 38
+================================================================================
+
+Image size: 500x333
+Original sigma: 1
+Scale factor: 2.96578
+Scaled sigma: 2.96578
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 101 ms
+Blurred image has been saved as 'output/cuda_38_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 13 ms
+Unsharpened image has been saved as 'output/cuda_38_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 55 ms
+Final image (unsharp + CLAHE) has been saved as 'output/cuda_38_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        101 ms
+Unsharp Masking:       13 ms
+CLAHE:                55 ms
+----------------------
+Total Time:           169 ms
+----------------------
+
+
+All versions completed!
+
+Execution Time Summary (in milliseconds):
+================================================================================
+Version    Gaussian Blur   Unsharp Masking CLAHE           Total          
+--------------------------------------------------------------------------------
+sequential 621             226             530             1556           
+openmp     193             12              41              484            
+mpi        312             55              208             816            
+cuda       101             13              55              169            
+================================================================================
+
+Speedup relative to Sequential Version:
+--------------------------------------------------------------------------------
+openmp    : 3.21x faster
+mpi       : 1.91x faster
+cuda      : 9.21x faster
+
+================================================================================
+
+Image: 4.bmp
+--------------------------------------------------------------------------------
+
+================================================================================
+Running Sequential Version...
+Command: ./filter_seq input\4.bmp unsharp_clahe 5 1.0 1.5 4
+================================================================================
+
+Image size: 128x128
+Original sigma: 1
+Scale factor: 1
+Scaled sigma: 1
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 67 ms
+Blurred image has been saved as 'output/seq_4_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 23 ms
+Unsharpened image has been saved as 'output/seq_4_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 55 ms
+Final image (unsharp + CLAHE) has been saved as 'output/seq_4_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:         67 ms
+Unsharp Masking:       23 ms
+CLAHE:                55 ms
+----------------------
+Total Time:           167 ms
+----------------------
+
+
+================================================================================
+Running OpenMP Version...
+Command: ./filter_omp input\4.bmp unsharp_clahe 5 1.0 1.5 4
+================================================================================
+
+Image size: 128x128
+Original sigma: 1
+Scale factor: 1
+Scaled sigma: 1
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 35 ms
+Blurred image has been saved as 'output/omp_4_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 6 ms
+Unsharpened image has been saved as 'output/omp_4_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 6 ms
+Final image (unsharp + CLAHE) has been saved as 'output/omp_4_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:         35 ms
+Unsharp Masking:        6 ms
+CLAHE:                 6 ms
+----------------------
+Total Time:            78 ms
+----------------------
+
+
+================================================================================
+Running MPI Version...
+Command: mpiexec -n 1 ./filter_mpi input\4.bmp unsharp_clahe 5 1.0 1.5 4
+================================================================================
+
+Image size: 128x128
+Original sigma: 1
+Scale factor: 1
+Scaled sigma: 1
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 37 ms
+Blurred image has been saved as 'output/mpi_4_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 9 ms
+Unsharpened image has been saved as 'output/mpi_4_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 24 ms
+Final image (unsharp + CLAHE) has been saved as 'output/mpi_4_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:         37 ms
+Unsharp Masking:        9 ms
+CLAHE:                24 ms
+----------------------
+Total Time:            92 ms
+----------------------
+
+
+================================================================================
+Running CUDA Version...
+Command: ./filter_cuda input\4.bmp unsharp_clahe 5 1.0 1.5 4
+================================================================================
+
+Image size: 128x128
+Original sigma: 1
+Scale factor: 1
+Scaled sigma: 1
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 77 ms
+Blurred image has been saved as 'output/cuda_4_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 4 ms
+Unsharpened image has been saved as 'output/cuda_4_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 6 ms
+Final image (unsharp + CLAHE) has been saved as 'output/cuda_4_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:         77 ms
+Unsharp Masking:        4 ms
+CLAHE:                 6 ms
+----------------------
+Total Time:            87 ms
+----------------------
+
+
+All versions completed!
+
+Execution Time Summary (in milliseconds):
+================================================================================
+Version    Gaussian Blur   Unsharp Masking CLAHE           Total          
+--------------------------------------------------------------------------------
+sequential 67              23              55              167            
+openmp     35              6               6               78             
+mpi        37              9               24              92             
+cuda       77              4               6               87             
+================================================================================
+
+Speedup relative to Sequential Version:
+--------------------------------------------------------------------------------
+openmp    : 2.14x faster
+mpi       : 1.82x faster
+cuda      : 1.92x faster
+
+================================================================================
+
+Image: 40.bmp
+--------------------------------------------------------------------------------
+
+================================================================================
+Running Sequential Version...
+Command: ./filter_seq input\40.bmp unsharp_clahe 5 1.0 1.5 40
+================================================================================
+
+Image size: 640x480
+Original sigma: 1
+Scale factor: 3.32193
+Scaled sigma: 3.32193
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 1228 ms
+Blurred image has been saved as 'output/seq_40_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 373 ms
+Unsharpened image has been saved as 'output/seq_40_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 922 ms
+Final image (unsharp + CLAHE) has been saved as 'output/seq_40_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:       1228 ms
+Unsharp Masking:      373 ms
+CLAHE:               922 ms
+----------------------
+Total Time:          2845 ms
+----------------------
+
+
+================================================================================
+Running OpenMP Version...
+Command: ./filter_omp input\40.bmp unsharp_clahe 5 1.0 1.5 40
+================================================================================
+
+Image size: 640x480
+Original sigma: 1
+Scale factor: 3.32193
+Scaled sigma: 3.32193
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 380 ms
+Blurred image has been saved as 'output/omp_40_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 56 ms
+Unsharpened image has been saved as 'output/omp_40_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 78 ms
+Final image (unsharp + CLAHE) has been saved as 'output/omp_40_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        380 ms
+Unsharp Masking:       56 ms
+CLAHE:                78 ms
+----------------------
+Total Time:           895 ms
+----------------------
+
+
+================================================================================
+Running MPI Version...
+Command: mpiexec -n 1 ./filter_mpi input\40.bmp unsharp_clahe 5 1.0 1.5 40
+================================================================================
+
+Image size: 640x480
+Original sigma: 1
+Scale factor: 3.32193
+Scaled sigma: 3.32193
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 563 ms
+Blurred image has been saved as 'output/mpi_40_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 94 ms
+Unsharpened image has been saved as 'output/mpi_40_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 400 ms
+Final image (unsharp + CLAHE) has been saved as 'output/mpi_40_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        563 ms
+Unsharp Masking:       94 ms
+CLAHE:               400 ms
+----------------------
+Total Time:          1375 ms
+----------------------
+
+
+================================================================================
+Running CUDA Version...
+Command: ./filter_cuda input\40.bmp unsharp_clahe 5 1.0 1.5 40
+================================================================================
+
+Image size: 640x480
+Original sigma: 1
+Scale factor: 3.32193
+Scaled sigma: 3.32193
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 103 ms
+Blurred image has been saved as 'output/cuda_40_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 25 ms
+Unsharpened image has been saved as 'output/cuda_40_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 105 ms
+Final image (unsharp + CLAHE) has been saved as 'output/cuda_40_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        103 ms
+Unsharp Masking:       25 ms
+CLAHE:               105 ms
+----------------------
+Total Time:           233 ms
+----------------------
+
+
+All versions completed!
+
+Execution Time Summary (in milliseconds):
+================================================================================
+Version    Gaussian Blur   Unsharp Masking CLAHE           Total          
+--------------------------------------------------------------------------------
+sequential 1228            373             922             2845           
+openmp     380             56              78              895            
+mpi        563             94              400             1375           
+cuda       103             25              105             233            
+================================================================================
+
+Speedup relative to Sequential Version:
+--------------------------------------------------------------------------------
+openmp    : 3.18x faster
+mpi       : 2.07x faster
+cuda      : 12.21x faster
+
+================================================================================
+
+Image: 41.bmp
+--------------------------------------------------------------------------------
+
+================================================================================
+Running Sequential Version...
+Command: ./filter_seq input\41.bmp unsharp_clahe 5 1.0 1.5 41
+================================================================================
+
+Error running Sequential Version:
+
+
+================================================================================
+Running OpenMP Version...
+Command: ./filter_omp input\41.bmp unsharp_clahe 5 1.0 1.5 41
+================================================================================
+
+Error running OpenMP Version:
+
+
+================================================================================
+Running MPI Version...
+Command: mpiexec -n 1 ./filter_mpi input\41.bmp unsharp_clahe 5 1.0 1.5 41
+================================================================================
+
+Error running MPI Version:
+
+
+================================================================================
+Running CUDA Version...
+Command: ./filter_cuda input\41.bmp unsharp_clahe 5 1.0 1.5 41
+================================================================================
+
+Error running CUDA Version:
+
+
+All versions completed!
+
+Execution Time Summary (in milliseconds):
+================================================================================
+Version    Gaussian Blur   Unsharp Masking CLAHE           Total          
+--------------------------------------------------------------------------------
+================================================================================
+
+================================================================================
+
+Image: 42.bmp
+--------------------------------------------------------------------------------
+
+================================================================================
+Running Sequential Version...
+Command: ./filter_seq input\42.bmp unsharp_clahe 5 1.0 1.5 42
+================================================================================
+
+Image size: 500x305
+Original sigma: 1
+Scale factor: 2.96578
+Scaled sigma: 2.96578
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 616 ms
+Blurred image has been saved as 'output/seq_42_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 196 ms
+Unsharpened image has been saved as 'output/seq_42_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 427 ms
+Final image (unsharp + CLAHE) has been saved as 'output/seq_42_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        616 ms
+Unsharp Masking:      196 ms
+CLAHE:               427 ms
+----------------------
+Total Time:          1463 ms
+----------------------
+
+
+================================================================================
+Running OpenMP Version...
+Command: ./filter_omp input\42.bmp unsharp_clahe 5 1.0 1.5 42
+================================================================================
+
+Image size: 500x305
+Original sigma: 1
+Scale factor: 2.96578
+Scaled sigma: 2.96578
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 188 ms
+Blurred image has been saved as 'output/omp_42_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 17 ms
+Unsharpened image has been saved as 'output/omp_42_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 52 ms
+Final image (unsharp + CLAHE) has been saved as 'output/omp_42_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        188 ms
+Unsharp Masking:       17 ms
+CLAHE:                52 ms
+----------------------
+Total Time:           472 ms
+----------------------
+
+
+================================================================================
+Running MPI Version...
+Command: mpiexec -n 1 ./filter_mpi input\42.bmp unsharp_clahe 5 1.0 1.5 42
+================================================================================
+
+Image size: 500x305
+Original sigma: 1
+Scale factor: 2.96578
+Scaled sigma: 2.96578
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 285 ms
+Blurred image has been saved as 'output/mpi_42_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 50 ms
+Unsharpened image has been saved as 'output/mpi_42_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 185 ms
+Final image (unsharp + CLAHE) has been saved as 'output/mpi_42_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        285 ms
+Unsharp Masking:       50 ms
+CLAHE:               185 ms
+----------------------
+Total Time:           680 ms
+----------------------
+
+
+================================================================================
+Running CUDA Version...
+Command: ./filter_cuda input\42.bmp unsharp_clahe 5 1.0 1.5 42
+================================================================================
+
+Image size: 500x305
+Original sigma: 1
+Scale factor: 2.96578
+Scaled sigma: 2.96578
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 97 ms
+Blurred image has been saved as 'output/cuda_42_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 11 ms
+Unsharpened image has been saved as 'output/cuda_42_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 44 ms
+Final image (unsharp + CLAHE) has been saved as 'output/cuda_42_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:         97 ms
+Unsharp Masking:       11 ms
+CLAHE:                44 ms
+----------------------
+Total Time:           152 ms
+----------------------
+
+
+All versions completed!
+
+Execution Time Summary (in milliseconds):
+================================================================================
+Version    Gaussian Blur   Unsharp Masking CLAHE           Total          
+--------------------------------------------------------------------------------
+sequential 616             196             427             1463           
+openmp     188             17              52              472            
+mpi        285             50              185             680            
+cuda       97              11              44              152            
+================================================================================
+
+Speedup relative to Sequential Version:
+--------------------------------------------------------------------------------
+openmp    : 3.10x faster
+mpi       : 2.15x faster
+cuda      : 9.62x faster
+
+================================================================================
+
+Image: 43.bmp
+--------------------------------------------------------------------------------
+
+================================================================================
+Running Sequential Version...
+Command: ./filter_seq input\43.bmp unsharp_clahe 5 1.0 1.5 43
+================================================================================
+
+Image size: 640x427
+Original sigma: 1
+Scale factor: 3.32193
+Scaled sigma: 3.32193
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 1056 ms
+Blurred image has been saved as 'output/seq_43_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 329 ms
+Unsharpened image has been saved as 'output/seq_43_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 794 ms
+Final image (unsharp + CLAHE) has been saved as 'output/seq_43_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:       1056 ms
+Unsharp Masking:      329 ms
+CLAHE:               794 ms
+----------------------
+Total Time:          2476 ms
+----------------------
+
+
+================================================================================
+Running OpenMP Version...
+Command: ./filter_omp input\43.bmp unsharp_clahe 5 1.0 1.5 43
+================================================================================
+
+Image size: 640x427
+Original sigma: 1
+Scale factor: 3.32193
+Scaled sigma: 3.32193
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 356 ms
+Blurred image has been saved as 'output/omp_43_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 30 ms
+Unsharpened image has been saved as 'output/omp_43_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 63 ms
+Final image (unsharp + CLAHE) has been saved as 'output/omp_43_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        356 ms
+Unsharp Masking:       30 ms
+CLAHE:                63 ms
+----------------------
+Total Time:           786 ms
+----------------------
+
+
+================================================================================
+Running MPI Version...
+Command: mpiexec -n 1 ./filter_mpi input\43.bmp unsharp_clahe 5 1.0 1.5 43
+================================================================================
+
+Image size: 640x427
+Original sigma: 1
+Scale factor: 3.32193
+Scaled sigma: 3.32193
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 502 ms
+Blurred image has been saved as 'output/mpi_43_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 78 ms
+Unsharpened image has been saved as 'output/mpi_43_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 334 ms
+Final image (unsharp + CLAHE) has been saved as 'output/mpi_43_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        502 ms
+Unsharp Masking:       78 ms
+CLAHE:               334 ms
+----------------------
+Total Time:          1197 ms
+----------------------
+
+
+================================================================================
+Running CUDA Version...
+Command: ./filter_cuda input\43.bmp unsharp_clahe 5 1.0 1.5 43
+================================================================================
+
+Image size: 640x427
+Original sigma: 1
+Scale factor: 3.32193
+Scaled sigma: 3.32193
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 96 ms
+Blurred image has been saved as 'output/cuda_43_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 21 ms
+Unsharpened image has been saved as 'output/cuda_43_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 85 ms
+Final image (unsharp + CLAHE) has been saved as 'output/cuda_43_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:         96 ms
+Unsharp Masking:       21 ms
+CLAHE:                85 ms
+----------------------
+Total Time:           202 ms
+----------------------
+
+
+All versions completed!
+
+Execution Time Summary (in milliseconds):
+================================================================================
+Version    Gaussian Blur   Unsharp Masking CLAHE           Total          
+--------------------------------------------------------------------------------
+sequential 1056            329             794             2476           
+openmp     356             30              63              786            
+mpi        502             78              334             1197           
+cuda       96              21              85              202            
+================================================================================
+
+Speedup relative to Sequential Version:
+--------------------------------------------------------------------------------
+openmp    : 3.15x faster
+mpi       : 2.07x faster
+cuda      : 12.26x faster
+
+================================================================================
+
+Image: 45.bmp
+--------------------------------------------------------------------------------
+
+================================================================================
+Running Sequential Version...
+Command: ./filter_seq input\45.bmp unsharp_clahe 5 1.0 1.5 45
+================================================================================
+
+Image size: 612x354
+Original sigma: 1
+Scale factor: 3.25739
+Scaled sigma: 3.25739
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 824 ms
+Blurred image has been saved as 'output/seq_45_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 276 ms
+Unsharpened image has been saved as 'output/seq_45_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 599 ms
+Final image (unsharp + CLAHE) has been saved as 'output/seq_45_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        824 ms
+Unsharp Masking:      276 ms
+CLAHE:               599 ms
+----------------------
+Total Time:          1926 ms
+----------------------
+
+
+================================================================================
+Running OpenMP Version...
+Command: ./filter_omp input\45.bmp unsharp_clahe 5 1.0 1.5 45
+================================================================================
+
+Image size: 612x354
+Original sigma: 1
+Scale factor: 3.25739
+Scaled sigma: 3.25739
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 287 ms
+Blurred image has been saved as 'output/omp_45_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 29 ms
+Unsharpened image has been saved as 'output/omp_45_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 61 ms
+Final image (unsharp + CLAHE) has been saved as 'output/omp_45_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        287 ms
+Unsharp Masking:       29 ms
+CLAHE:                61 ms
+----------------------
+Total Time:           660 ms
+----------------------
+
+
+================================================================================
+Running MPI Version...
+Command: mpiexec -n 1 ./filter_mpi input\45.bmp unsharp_clahe 5 1.0 1.5 45
+================================================================================
+
+Image size: 612x354
+Original sigma: 1
+Scale factor: 3.25739
+Scaled sigma: 3.25739
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 404 ms
+Blurred image has been saved as 'output/mpi_45_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 59 ms
+Unsharpened image has been saved as 'output/mpi_45_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 259 ms
+Final image (unsharp + CLAHE) has been saved as 'output/mpi_45_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        404 ms
+Unsharp Masking:       59 ms
+CLAHE:               259 ms
+----------------------
+Total Time:           950 ms
+----------------------
+
+
+================================================================================
+Running CUDA Version...
+Command: ./filter_cuda input\45.bmp unsharp_clahe 5 1.0 1.5 45
+================================================================================
+
+Image size: 612x354
+Original sigma: 1
+Scale factor: 3.25739
+Scaled sigma: 3.25739
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 95 ms
+Blurred image has been saved as 'output/cuda_45_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 16 ms
+Unsharpened image has been saved as 'output/cuda_45_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 70 ms
+Final image (unsharp + CLAHE) has been saved as 'output/cuda_45_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:         95 ms
+Unsharp Masking:       16 ms
+CLAHE:                70 ms
+----------------------
+Total Time:           181 ms
+----------------------
+
+
+All versions completed!
+
+Execution Time Summary (in milliseconds):
+================================================================================
+Version    Gaussian Blur   Unsharp Masking CLAHE           Total          
+--------------------------------------------------------------------------------
+sequential 824             276             599             1926           
+openmp     287             29              61              660            
+mpi        404             59              259             950            
+cuda       95              16              70              181            
+================================================================================
+
+Speedup relative to Sequential Version:
+--------------------------------------------------------------------------------
+openmp    : 2.92x faster
+mpi       : 2.03x faster
+cuda      : 10.64x faster
+
+================================================================================
+
+Image: 46.bmp
+--------------------------------------------------------------------------------
+
+================================================================================
+Running Sequential Version...
+Command: ./filter_seq input\46.bmp unsharp_clahe 5 1.0 1.5 46
+================================================================================
+
+Image size: 612x408
+Original sigma: 1
+Scale factor: 3.25739
+Scaled sigma: 3.25739
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 965 ms
+Blurred image has been saved as 'output/seq_46_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 298 ms
+Unsharpened image has been saved as 'output/seq_46_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 684 ms
+Final image (unsharp + CLAHE) has been saved as 'output/seq_46_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        965 ms
+Unsharp Masking:      298 ms
+CLAHE:               684 ms
+----------------------
+Total Time:          2209 ms
+----------------------
+
+
+================================================================================
+Running OpenMP Version...
+Command: ./filter_omp input\46.bmp unsharp_clahe 5 1.0 1.5 46
+================================================================================
+
+Image size: 612x408
+Original sigma: 1
+Scale factor: 3.25739
+Scaled sigma: 3.25739
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 303 ms
+Blurred image has been saved as 'output/omp_46_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 18 ms
+Unsharpened image has been saved as 'output/omp_46_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 68 ms
+Final image (unsharp + CLAHE) has been saved as 'output/omp_46_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        303 ms
+Unsharp Masking:       18 ms
+CLAHE:                68 ms
+----------------------
+Total Time:           707 ms
+----------------------
+
+
+================================================================================
+Running MPI Version...
+Command: mpiexec -n 1 ./filter_mpi input\46.bmp unsharp_clahe 5 1.0 1.5 46
+================================================================================
+
+Image size: 612x408
+Original sigma: 1
+Scale factor: 3.25739
+Scaled sigma: 3.25739
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 455 ms
+Blurred image has been saved as 'output/mpi_46_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 67 ms
+Unsharpened image has been saved as 'output/mpi_46_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 296 ms
+Final image (unsharp + CLAHE) has been saved as 'output/mpi_46_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        455 ms
+Unsharp Masking:       67 ms
+CLAHE:               296 ms
+----------------------
+Total Time:          1077 ms
+----------------------
+
+
+================================================================================
+Running CUDA Version...
+Command: ./filter_cuda input\46.bmp unsharp_clahe 5 1.0 1.5 46
+================================================================================
+
+Image size: 612x408
+Original sigma: 1
+Scale factor: 3.25739
+Scaled sigma: 3.25739
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 88 ms
+Blurred image has been saved as 'output/cuda_46_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 19 ms
+Unsharpened image has been saved as 'output/cuda_46_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 76 ms
+Final image (unsharp + CLAHE) has been saved as 'output/cuda_46_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:         88 ms
+Unsharp Masking:       19 ms
+CLAHE:                76 ms
+----------------------
+Total Time:           183 ms
+----------------------
+
+
+All versions completed!
+
+Execution Time Summary (in milliseconds):
+================================================================================
+Version    Gaussian Blur   Unsharp Masking CLAHE           Total          
+--------------------------------------------------------------------------------
+sequential 965             298             684             2209           
+openmp     303             18              68              707            
+mpi        455             67              296             1077           
+cuda       88              19              76              183            
+================================================================================
+
+Speedup relative to Sequential Version:
+--------------------------------------------------------------------------------
+openmp    : 3.12x faster
+mpi       : 2.05x faster
+cuda      : 12.07x faster
+
+================================================================================
+
+Image: 47.bmp
+--------------------------------------------------------------------------------
+
+================================================================================
+Running Sequential Version...
+Command: ./filter_seq input\47.bmp unsharp_clahe 5 1.0 1.5 47
+================================================================================
+
+Image size: 1920x1281
+Original sigma: 1
+Scale factor: 4.90689
+Scaled sigma: 4.90689
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 9599 ms
+Blurred image has been saved as 'output/seq_47_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 2887 ms
+Unsharpened image has been saved as 'output/seq_47_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 7084 ms
+Final image (unsharp + CLAHE) has been saved as 'output/seq_47_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:       9599 ms
+Unsharp Masking:     2887 ms
+CLAHE:              7084 ms
+----------------------
+Total Time:         22089 ms
+----------------------
+
+
+================================================================================
+Running OpenMP Version...
+Command: ./filter_omp input\47.bmp unsharp_clahe 5 1.0 1.5 47
+================================================================================
+
+Image size: 1920x1281
+Original sigma: 1
+Scale factor: 4.90689
+Scaled sigma: 4.90689
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 2268 ms
+Blurred image has been saved as 'output/omp_47_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 108 ms
+Unsharpened image has been saved as 'output/omp_47_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 445 ms
+Final image (unsharp + CLAHE) has been saved as 'output/omp_47_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:       2268 ms
+Unsharp Masking:      108 ms
+CLAHE:               445 ms
+----------------------
+Total Time:          5352 ms
+----------------------
+
+
+================================================================================
+Running MPI Version...
+Command: mpiexec -n 1 ./filter_mpi input\47.bmp unsharp_clahe 5 1.0 1.5 47
+================================================================================
+
+Image size: 1920x1281
+Original sigma: 1
+Scale factor: 4.90689
+Scaled sigma: 4.90689
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 4607 ms
+Blurred image has been saved as 'output/mpi_47_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 630 ms
+Unsharpened image has been saved as 'output/mpi_47_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 3007 ms
+Final image (unsharp + CLAHE) has been saved as 'output/mpi_47_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:       4607 ms
+Unsharp Masking:      630 ms
+CLAHE:              3007 ms
+----------------------
+Total Time:         10787 ms
+----------------------
+
+
+================================================================================
+Running CUDA Version...
+Command: ./filter_cuda input\47.bmp unsharp_clahe 5 1.0 1.5 47
+================================================================================
+
+Image size: 1920x1281
+Original sigma: 1
+Scale factor: 4.90689
+Scaled sigma: 4.90689
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 205 ms
+Blurred image has been saved as 'output/cuda_47_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 192 ms
+Unsharpened image has been saved as 'output/cuda_47_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 805 ms
+Final image (unsharp + CLAHE) has been saved as 'output/cuda_47_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        205 ms
+Unsharp Masking:      192 ms
+CLAHE:               805 ms
+----------------------
+Total Time:          1202 ms
+----------------------
+
+
+All versions completed!
+
+Execution Time Summary (in milliseconds):
+================================================================================
+Version    Gaussian Blur   Unsharp Masking CLAHE           Total          
+--------------------------------------------------------------------------------
+sequential 9599            2887            7084            22089          
+openmp     2268            108             445             5352           
+mpi        4607            630             3007            10787          
+cuda       205             192             805             1202           
+================================================================================
+
+Speedup relative to Sequential Version:
+--------------------------------------------------------------------------------
+openmp    : 4.13x faster
+mpi       : 2.05x faster
+cuda      : 18.38x faster
+
+================================================================================
+
+Image: 5.bmp
+--------------------------------------------------------------------------------
+
+================================================================================
+Running Sequential Version...
+Command: ./filter_seq input\5.bmp unsharp_clahe 5 1.0 1.5 5
+================================================================================
+
+Image size: 976x549
+Original sigma: 1
+Scale factor: 3.93074
+Scaled sigma: 3.93074
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 2038 ms
+Blurred image has been saved as 'output/seq_5_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 622 ms
+Unsharpened image has been saved as 'output/seq_5_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 1503 ms
+Final image (unsharp + CLAHE) has been saved as 'output/seq_5_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:       2038 ms
+Unsharp Masking:      622 ms
+CLAHE:              1503 ms
+----------------------
+Total Time:          4714 ms
+----------------------
+
+
+================================================================================
+Running OpenMP Version...
+Command: ./filter_omp input\5.bmp unsharp_clahe 5 1.0 1.5 5
+================================================================================
+
+Image size: 976x549
+Original sigma: 1
+Scale factor: 3.93074
+Scaled sigma: 3.93074
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 646 ms
+Blurred image has been saved as 'output/omp_5_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 37 ms
+Unsharpened image has been saved as 'output/omp_5_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 109 ms
+Final image (unsharp + CLAHE) has been saved as 'output/omp_5_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        646 ms
+Unsharp Masking:       37 ms
+CLAHE:               109 ms
+----------------------
+Total Time:          1393 ms
+----------------------
+
+
+================================================================================
+Running MPI Version...
+Command: mpiexec -n 1 ./filter_mpi input\5.bmp unsharp_clahe 5 1.0 1.5 5
+================================================================================
+
+Image size: 976x549
+Original sigma: 1
+Scale factor: 3.93074
+Scaled sigma: 3.93074
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 979 ms
+Blurred image has been saved as 'output/mpi_5_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 146 ms
+Unsharpened image has been saved as 'output/mpi_5_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 646 ms
+Final image (unsharp + CLAHE) has been saved as 'output/mpi_5_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        979 ms
+Unsharp Masking:      146 ms
+CLAHE:               646 ms
+----------------------
+Total Time:          2319 ms
+----------------------
+
+
+================================================================================
+Running CUDA Version...
+Command: ./filter_cuda input\5.bmp unsharp_clahe 5 1.0 1.5 5
+================================================================================
+
+Image size: 976x549
+Original sigma: 1
+Scale factor: 3.93074
+Scaled sigma: 3.93074
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 110 ms
+Blurred image has been saved as 'output/cuda_5_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 42 ms
+Unsharpened image has been saved as 'output/cuda_5_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 166 ms
+Final image (unsharp + CLAHE) has been saved as 'output/cuda_5_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        110 ms
+Unsharp Masking:       42 ms
+CLAHE:               166 ms
+----------------------
+Total Time:           318 ms
+----------------------
+
+
+All versions completed!
+
+Execution Time Summary (in milliseconds):
+================================================================================
+Version    Gaussian Blur   Unsharp Masking CLAHE           Total          
+--------------------------------------------------------------------------------
+sequential 2038            622             1503            4714           
+openmp     646             37              109             1393           
+mpi        979             146             646             2319           
+cuda       110             42              166             318            
+================================================================================
+
+Speedup relative to Sequential Version:
+--------------------------------------------------------------------------------
+openmp    : 3.38x faster
+mpi       : 2.03x faster
+cuda      : 14.82x faster
+
+================================================================================
+
+Image: 50.bmp
+--------------------------------------------------------------------------------
+
+================================================================================
+Running Sequential Version...
+Command: ./filter_seq input\50.bmp unsharp_clahe 5 1.0 1.5 50
+================================================================================
+
+Image size: 1080x635
+Original sigma: 1
+Scale factor: 4.07682
+Scaled sigma: 4.07682
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 2638 ms
+Blurred image has been saved as 'output/seq_50_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 820 ms
+Unsharpened image has been saved as 'output/seq_50_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 1935 ms
+Final image (unsharp + CLAHE) has been saved as 'output/seq_50_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:       2638 ms
+Unsharp Masking:      820 ms
+CLAHE:              1935 ms
+----------------------
+Total Time:          6098 ms
+----------------------
+
+
+================================================================================
+Running OpenMP Version...
+Command: ./filter_omp input\50.bmp unsharp_clahe 5 1.0 1.5 50
+================================================================================
+
+Image size: 1080x635
+Original sigma: 1
+Scale factor: 4.07682
+Scaled sigma: 4.07682
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 803 ms
+Blurred image has been saved as 'output/omp_50_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 54 ms
+Unsharpened image has been saved as 'output/omp_50_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 121 ms
+Final image (unsharp + CLAHE) has been saved as 'output/omp_50_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        803 ms
+Unsharp Masking:       54 ms
+CLAHE:               121 ms
+----------------------
+Total Time:          1721 ms
+----------------------
+
+
+================================================================================
+Running MPI Version...
+Command: mpiexec -n 1 ./filter_mpi input\50.bmp unsharp_clahe 5 1.0 1.5 50
+================================================================================
+
+Image size: 1080x635
+Original sigma: 1
+Scale factor: 4.07682
+Scaled sigma: 4.07682
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 1322 ms
+Blurred image has been saved as 'output/mpi_50_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 178 ms
+Unsharpened image has been saved as 'output/mpi_50_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 819 ms
+Final image (unsharp + CLAHE) has been saved as 'output/mpi_50_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:       1322 ms
+Unsharp Masking:      178 ms
+CLAHE:               819 ms
+----------------------
+Total Time:          3021 ms
+----------------------
+
+
+================================================================================
+Running CUDA Version...
+Command: ./filter_cuda input\50.bmp unsharp_clahe 5 1.0 1.5 50
+================================================================================
+
+Image size: 1080x635
+Original sigma: 1
+Scale factor: 4.07682
+Scaled sigma: 4.07682
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 121 ms
+Blurred image has been saved as 'output/cuda_50_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 53 ms
+Unsharpened image has been saved as 'output/cuda_50_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 220 ms
+Final image (unsharp + CLAHE) has been saved as 'output/cuda_50_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        121 ms
+Unsharp Masking:       53 ms
+CLAHE:               220 ms
+----------------------
+Total Time:           394 ms
+----------------------
+
+
+All versions completed!
+
+Execution Time Summary (in milliseconds):
+================================================================================
+Version    Gaussian Blur   Unsharp Masking CLAHE           Total          
+--------------------------------------------------------------------------------
+sequential 2638            820             1935            6098           
+openmp     803             54              121             1721           
+mpi        1322            178             819             3021           
+cuda       121             53              220             394            
+================================================================================
+
+Speedup relative to Sequential Version:
+--------------------------------------------------------------------------------
+openmp    : 3.54x faster
+mpi       : 2.02x faster
+cuda      : 15.48x faster
+
+================================================================================
+
+Image: 6.bmp
+--------------------------------------------------------------------------------
+
+================================================================================
+Running Sequential Version...
+Command: ./filter_seq input\6.bmp unsharp_clahe 5 1.0 1.5 6
+================================================================================
+
+Image size: 1180x553
+Original sigma: 1
+Scale factor: 4.20457
+Scaled sigma: 4.20457
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 3090 ms
+Blurred image has been saved as 'output/seq_6_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 780 ms
+Unsharpened image has been saved as 'output/seq_6_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 1959 ms
+Final image (unsharp + CLAHE) has been saved as 'output/seq_6_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:       3090 ms
+Unsharp Masking:      780 ms
+CLAHE:              1959 ms
+----------------------
+Total Time:          6560 ms
+----------------------
+
+
+================================================================================
+Running OpenMP Version...
+Command: ./filter_omp input\6.bmp unsharp_clahe 5 1.0 1.5 6
+================================================================================
+
+Image size: 1180x553
+Original sigma: 1
+Scale factor: 4.20457
+Scaled sigma: 4.20457
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 854 ms
+Blurred image has been saved as 'output/omp_6_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 56 ms
+Unsharpened image has been saved as 'output/omp_6_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 169 ms
+Final image (unsharp + CLAHE) has been saved as 'output/omp_6_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        854 ms
+Unsharp Masking:       56 ms
+CLAHE:               169 ms
+----------------------
+Total Time:          1809 ms
+----------------------
+
+
+================================================================================
+Running MPI Version...
+Command: mpiexec -n 1 ./filter_mpi input\6.bmp unsharp_clahe 5 1.0 1.5 6
+================================================================================
+
+Image size: 1180x553
+Original sigma: 1
+Scale factor: 4.20457
+Scaled sigma: 4.20457
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 1282 ms
+Blurred image has been saved as 'output/mpi_6_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 195 ms
+Unsharpened image has been saved as 'output/mpi_6_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 807 ms
+Final image (unsharp + CLAHE) has been saved as 'output/mpi_6_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:       1282 ms
+Unsharp Masking:      195 ms
+CLAHE:               807 ms
+----------------------
+Total Time:          2981 ms
+----------------------
+
+
+================================================================================
+Running CUDA Version...
+Command: ./filter_cuda input\6.bmp unsharp_clahe 5 1.0 1.5 6
+================================================================================
+
+Image size: 1180x553
+Original sigma: 1
+Scale factor: 4.20457
+Scaled sigma: 4.20457
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 117 ms
+Blurred image has been saved as 'output/cuda_6_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 53 ms
+Unsharpened image has been saved as 'output/cuda_6_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 218 ms
+Final image (unsharp + CLAHE) has been saved as 'output/cuda_6_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        117 ms
+Unsharp Masking:       53 ms
+CLAHE:               218 ms
+----------------------
+Total Time:           388 ms
+----------------------
+
+
+All versions completed!
+
+Execution Time Summary (in milliseconds):
+================================================================================
+Version    Gaussian Blur   Unsharp Masking CLAHE           Total          
+--------------------------------------------------------------------------------
+sequential 3090            780             1959            6560           
+openmp     854             56              169             1809           
+mpi        1282            195             807             2981           
+cuda       117             53              218             388            
+================================================================================
+
+Speedup relative to Sequential Version:
+--------------------------------------------------------------------------------
+openmp    : 3.63x faster
+mpi       : 2.20x faster
+cuda      : 16.91x faster
+
+================================================================================
+
+Image: 9.bmp
+--------------------------------------------------------------------------------
+
+================================================================================
+Running Sequential Version...
+Command: ./filter_seq input\9.bmp unsharp_clahe 5 1.0 1.5 9
+================================================================================
+
+Image size: 960x682
+Original sigma: 1
+Scale factor: 3.90689
+Scaled sigma: 3.90689
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 2521 ms
+Blurred image has been saved as 'output/seq_9_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 771 ms
+Unsharpened image has been saved as 'output/seq_9_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 1759 ms
+Final image (unsharp + CLAHE) has been saved as 'output/seq_9_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:       2521 ms
+Unsharp Masking:      771 ms
+CLAHE:              1759 ms
+----------------------
+Total Time:          5732 ms
+----------------------
+
+
+================================================================================
+Running OpenMP Version...
+Command: ./filter_omp input\9.bmp unsharp_clahe 5 1.0 1.5 9
+================================================================================
+
+Image size: 960x682
+Original sigma: 1
+Scale factor: 3.90689
+Scaled sigma: 3.90689
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 818 ms
+Blurred image has been saved as 'output/omp_9_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 47 ms
+Unsharpened image has been saved as 'output/omp_9_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 110 ms
+Final image (unsharp + CLAHE) has been saved as 'output/omp_9_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        818 ms
+Unsharp Masking:       47 ms
+CLAHE:               110 ms
+----------------------
+Total Time:          1681 ms
+----------------------
+
+
+================================================================================
+Running MPI Version...
+Command: mpiexec -n 1 ./filter_mpi input\9.bmp unsharp_clahe 5 1.0 1.5 9
+================================================================================
+
+Image size: 960x682
+Original sigma: 1
+Scale factor: 3.90689
+Scaled sigma: 3.90689
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 1212 ms
+Blurred image has been saved as 'output/mpi_9_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 169 ms
+Unsharpened image has been saved as 'output/mpi_9_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 736 ms
+Final image (unsharp + CLAHE) has been saved as 'output/mpi_9_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:       1212 ms
+Unsharp Masking:      169 ms
+CLAHE:               736 ms
+----------------------
+Total Time:          2783 ms
+----------------------
+
+
+================================================================================
+Running CUDA Version...
+Command: ./filter_cuda input\9.bmp unsharp_clahe 5 1.0 1.5 9
+================================================================================
+
+Image size: 960x682
+Original sigma: 1
+Scale factor: 3.90689
+Scaled sigma: 3.90689
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 118 ms
+Blurred image has been saved as 'output/cuda_9_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 52 ms
+Unsharpened image has been saved as 'output/cuda_9_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 194 ms
+Final image (unsharp + CLAHE) has been saved as 'output/cuda_9_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        118 ms
+Unsharp Masking:       52 ms
+CLAHE:               194 ms
+----------------------
+Total Time:           364 ms
+----------------------
+
+
+All versions completed!
+
+Execution Time Summary (in milliseconds):
+================================================================================
+Version    Gaussian Blur   Unsharp Masking CLAHE           Total          
+--------------------------------------------------------------------------------
+sequential 2521            771             1759            5732           
+openmp     818             47              110             1681           
+mpi        1212            169             736             2783           
+cuda       118             52              194             364            
+================================================================================
+
+Speedup relative to Sequential Version:
+--------------------------------------------------------------------------------
+openmp    : 3.41x faster
+mpi       : 2.06x faster
+cuda      : 15.75x faster
+
+================================================================================
+
+Image: sample1.bmp
+--------------------------------------------------------------------------------
+
+================================================================================
+Running Sequential Version...
+Command: ./filter_seq input\sample1.bmp unsharp_clahe 5 1.0 1.5 sample1
+================================================================================
+
+Image size: 2048x2048
+Original sigma: 1
+Scale factor: 5
+Scaled sigma: 5
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 16807 ms
+Blurred image has been saved as 'output/seq_sample1_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 4811 ms
+Unsharpened image has been saved as 'output/seq_sample1_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 11129 ms
+Final image (unsharp + CLAHE) has been saved as 'output/seq_sample1_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:      16807 ms
+Unsharp Masking:     4811 ms
+CLAHE:             11129 ms
+----------------------
+Total Time:         36994 ms
+----------------------
+
+
+================================================================================
+Running OpenMP Version...
+Command: ./filter_omp input\sample1.bmp unsharp_clahe 5 1.0 1.5 sample1
+================================================================================
+
+Image size: 2048x2048
+Original sigma: 1
+Scale factor: 5
+Scaled sigma: 5
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 3804 ms
+Blurred image has been saved as 'output/omp_sample1_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 205 ms
+Unsharpened image has been saved as 'output/omp_sample1_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 807 ms
+Final image (unsharp + CLAHE) has been saved as 'output/omp_sample1_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:       3804 ms
+Unsharp Masking:      205 ms
+CLAHE:               807 ms
+----------------------
+Total Time:          9105 ms
+----------------------
+
+
+================================================================================
+Running MPI Version...
+Command: mpiexec -n 1 ./filter_mpi input\sample1.bmp unsharp_clahe 5 1.0 1.5 sample1
+================================================================================
+
+Image size: 2048x2048
+Original sigma: 1
+Scale factor: 5
+Scaled sigma: 5
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 8158 ms
+Blurred image has been saved as 'output/mpi_sample1_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 1032 ms
+Unsharpened image has been saved as 'output/mpi_sample1_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 4810 ms
+Final image (unsharp + CLAHE) has been saved as 'output/mpi_sample1_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:       8158 ms
+Unsharp Masking:     1032 ms
+CLAHE:              4810 ms
+----------------------
+Total Time:         18260 ms
+----------------------
+
+
+================================================================================
+Running CUDA Version...
+Command: ./filter_cuda input\sample1.bmp unsharp_clahe 5 1.0 1.5 sample1
+================================================================================
+
+Image size: 2048x2048
+Original sigma: 1
+Scale factor: 5
+Scaled sigma: 5
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 294 ms
+Blurred image has been saved as 'output/cuda_sample1_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 326 ms
+Unsharpened image has been saved as 'output/cuda_sample1_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 1247 ms
+Final image (unsharp + CLAHE) has been saved as 'output/cuda_sample1_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        294 ms
+Unsharp Masking:      326 ms
+CLAHE:              1247 ms
+----------------------
+Total Time:          1867 ms
+----------------------
+
+
+All versions completed!
+
+Execution Time Summary (in milliseconds):
+================================================================================
+Version    Gaussian Blur   Unsharp Masking CLAHE           Total          
+--------------------------------------------------------------------------------
+sequential 16807           4811            11129           36994          
+openmp     3804            205             807             9105           
+mpi        8158            1032            4810            18260          
+cuda       294             326             1247            1867           
+================================================================================
+
+Speedup relative to Sequential Version:
+--------------------------------------------------------------------------------
+openmp    : 4.06x faster
+mpi       : 2.03x faster
+cuda      : 19.81x faster
+
+================================================================================
+
+Image: test.bmp
+--------------------------------------------------------------------------------
+
+================================================================================
+Running Sequential Version...
+Command: ./filter_seq input\test.bmp unsharp_clahe 5 1.0 1.5 test
+================================================================================
+
+Image size: 250x300
+Original sigma: 1
+Scale factor: 2.22882
+Scaled sigma: 2.22882
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 297 ms
+Blurred image has been saved as 'output/seq_test_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 100 ms
+Unsharpened image has been saved as 'output/seq_test_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 240 ms
+Final image (unsharp + CLAHE) has been saved as 'output/seq_test_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        297 ms
+Unsharp Masking:      100 ms
+CLAHE:               240 ms
+----------------------
+Total Time:           718 ms
+----------------------
+
+
+================================================================================
+Running OpenMP Version...
+Command: ./filter_omp input\test.bmp unsharp_clahe 5 1.0 1.5 test
+================================================================================
+
+Image size: 250x300
+Original sigma: 1
+Scale factor: 2.22882
+Scaled sigma: 2.22882
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 91 ms
+Blurred image has been saved as 'output/omp_test_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 14 ms
+Unsharpened image has been saved as 'output/omp_test_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 23 ms
+Final image (unsharp + CLAHE) has been saved as 'output/omp_test_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:         91 ms
+Unsharp Masking:       14 ms
+CLAHE:                23 ms
+----------------------
+Total Time:           250 ms
+----------------------
+
+
+================================================================================
+Running MPI Version...
+Command: mpiexec -n 1 ./filter_mpi input\test.bmp unsharp_clahe 5 1.0 1.5 test
+================================================================================
+
+Image size: 250x300
+Original sigma: 1
+Scale factor: 2.22882
+Scaled sigma: 2.22882
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 164 ms
+Blurred image has been saved as 'output/mpi_test_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 22 ms
+Unsharpened image has been saved as 'output/mpi_test_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 115 ms
+Final image (unsharp + CLAHE) has been saved as 'output/mpi_test_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        164 ms
+Unsharp Masking:       22 ms
+CLAHE:               115 ms
+----------------------
+Total Time:           388 ms
+----------------------
+
+
+================================================================================
+Running CUDA Version...
+Command: ./filter_cuda input\test.bmp unsharp_clahe 5 1.0 1.5 test
+================================================================================
+
+Image size: 250x300
+Original sigma: 1
+Scale factor: 2.22882
+Scaled sigma: 2.22882
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 92 ms
+Blurred image has been saved as 'output/cuda_test_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 6 ms
+Unsharpened image has been saved as 'output/cuda_test_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 30 ms
+Final image (unsharp + CLAHE) has been saved as 'output/cuda_test_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:         92 ms
+Unsharp Masking:        6 ms
+CLAHE:                30 ms
+----------------------
+Total Time:           128 ms
+----------------------
+
+
+All versions completed!
+
+Execution Time Summary (in milliseconds):
+================================================================================
+Version    Gaussian Blur   Unsharp Masking CLAHE           Total          
+--------------------------------------------------------------------------------
+sequential 297             100             240             718            
+openmp     91              14              23              250            
+mpi        164             22              115             388            
+cuda       92              6               30              128            
+================================================================================
+
+Speedup relative to Sequential Version:
+--------------------------------------------------------------------------------
+openmp    : 2.87x faster
+mpi       : 1.85x faster
+cuda      : 5.61x faster
+
+================================================================================
+
+Image: tree.bmp
+--------------------------------------------------------------------------------
+
+================================================================================
+Running Sequential Version...
+Command: ./filter_seq input\tree.bmp unsharp_clahe 5 1.0 1.5 tree
+================================================================================
+
+Image size: 504x281
+Original sigma: 1
+Scale factor: 2.97728
+Scaled sigma: 2.97728
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 553 ms
+Blurred image has been saved as 'output/seq_tree_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 172 ms
+Unsharpened image has been saved as 'output/seq_tree_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 400 ms
+Final image (unsharp + CLAHE) has been saved as 'output/seq_tree_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        553 ms
+Unsharp Masking:      172 ms
+CLAHE:               400 ms
+----------------------
+Total Time:          1274 ms
+----------------------
+
+
+================================================================================
+Running OpenMP Version...
+Command: ./filter_omp input\tree.bmp unsharp_clahe 5 1.0 1.5 tree
+================================================================================
+
+Image size: 504x281
+Original sigma: 1
+Scale factor: 2.97728
+Scaled sigma: 2.97728
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 188 ms
+Blurred image has been saved as 'output/omp_tree_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 18 ms
+Unsharpened image has been saved as 'output/omp_tree_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 50 ms
+Final image (unsharp + CLAHE) has been saved as 'output/omp_tree_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        188 ms
+Unsharp Masking:       18 ms
+CLAHE:                50 ms
+----------------------
+Total Time:           464 ms
+----------------------
+
+
+================================================================================
+Running MPI Version...
+Command: mpiexec -n 1 ./filter_mpi input\tree.bmp unsharp_clahe 5 1.0 1.5 tree
+================================================================================
+
+Image size: 504x281
+Original sigma: 1
+Scale factor: 2.97728
+Scaled sigma: 2.97728
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 269 ms
+Blurred image has been saved as 'output/mpi_tree_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 52 ms
+Unsharpened image has been saved as 'output/mpi_tree_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 173 ms
+Final image (unsharp + CLAHE) has been saved as 'output/mpi_tree_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:        269 ms
+Unsharp Masking:       52 ms
+CLAHE:               173 ms
+----------------------
+Total Time:           644 ms
+----------------------
+
+
+================================================================================
+Running CUDA Version...
+Command: ./filter_cuda input\tree.bmp unsharp_clahe 5 1.0 1.5 tree
+================================================================================
+
+Image size: 504x281
+Original sigma: 1
+Scale factor: 2.97728
+Scaled sigma: 2.97728
+Sharpening strength (alpha): 1.5
+Applying unsharp masking followed by CLAHE...
+Applying Gaussian blur...
+Gaussian blur completed in 90 ms
+Blurred image has been saved as 'output/cuda_tree_blurred.bmp'
+Applying unsharp masking...
+Unsharp masking completed in 12 ms
+Unsharpened image has been saved as 'output/cuda_tree_unsharp.bmp'
+Applying CLAHE to unsharpened image...
+CLAHE completed in 44 ms
+Final image (unsharp + CLAHE) has been saved as 'output/cuda_tree_unsharp_clahe.bmp'
+
+Execution Time Summary:
+----------------------
+Gaussian Blur:         90 ms
+Unsharp Masking:       12 ms
+CLAHE:                44 ms
+----------------------
+Total Time:           146 ms
+----------------------
+
+
+All versions completed!
+
+Execution Time Summary (in milliseconds):
+================================================================================
+Version    Gaussian Blur   Unsharp Masking CLAHE           Total          
+--------------------------------------------------------------------------------
+sequential 553             172             400             1274           
+openmp     188             18              50              464            
+mpi        269             52              173             644            
+cuda       90              12              44              146            
+================================================================================
+
+Speedup relative to Sequential Version:
+--------------------------------------------------------------------------------
+openmp    : 2.75x faster
+mpi       : 1.98x faster
+cuda      : 8.73x faster
+
+================================================================================
+

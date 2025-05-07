@@ -1,0 +1,940 @@
+{
+    "images": {
+        "1.bmp": {
+            "sequential": {
+                "gaussian_blur": 81864,
+                "unsharp_masking": 18936,
+                "clahe": 37575,
+                "total": 155079
+            },
+            "openmp": {
+                "gaussian_blur": 12850,
+                "unsharp_masking": 650,
+                "clahe": 2477,
+                "total": 30928
+            },
+            "mpi": {
+                "gaussian_blur": 32349,
+                "unsharp_masking": 3595,
+                "clahe": 16901,
+                "total": 67796
+            },
+            "cuda": {
+                "gaussian_blur": 1036,
+                "unsharp_masking": 1063,
+                "clahe": 4339,
+                "total": 6438
+            }
+        },
+        "11.bmp": {
+            "sequential": {
+                "gaussian_blur": 686,
+                "unsharp_masking": 219,
+                "clahe": 470,
+                "total": 1580
+            },
+            "openmp": {
+                "gaussian_blur": 260,
+                "unsharp_masking": 24,
+                "clahe": 46,
+                "total": 598
+            },
+            "mpi": {
+                "gaussian_blur": 332,
+                "unsharp_masking": 56,
+                "clahe": 210,
+                "total": 796
+            },
+            "cuda": {
+                "gaussian_blur": 149,
+                "unsharp_masking": 14,
+                "clahe": 52,
+                "total": 215
+            }
+        },
+        "12.bmp": {
+            "sequential": {
+                "gaussian_blur": 6784,
+                "unsharp_masking": 2537,
+                "clahe": 5809,
+                "total": 17914
+            },
+            "openmp": {
+                "gaussian_blur": 2055,
+                "unsharp_masking": 109,
+                "clahe": 355,
+                "total": 4307
+            },
+            "mpi": {
+                "gaussian_blur": 3184,
+                "unsharp_masking": 392,
+                "clahe": 1902,
+                "total": 7141
+            },
+            "cuda": {
+                "gaussian_blur": 260,
+                "unsharp_masking": 117,
+                "clahe": 489,
+                "total": 866
+            }
+        },
+        "13.bmp": {
+            "sequential": {
+                "gaussian_blur": 2624,
+                "unsharp_masking": 794,
+                "clahe": 1776,
+                "total": 5885
+            },
+            "openmp": {
+                "gaussian_blur": 850,
+                "unsharp_masking": 39,
+                "clahe": 148,
+                "total": 1765
+            },
+            "mpi": {
+                "gaussian_blur": 1243,
+                "unsharp_masking": 173,
+                "clahe": 763,
+                "total": 2865
+            },
+            "cuda": {
+                "gaussian_blur": 186,
+                "unsharp_masking": 52,
+                "clahe": 198,
+                "total": 436
+            }
+        },
+        "14.bmp": {
+            "sequential": {
+                "gaussian_blur": 2903,
+                "unsharp_masking": 897,
+                "clahe": 2035,
+                "total": 6591
+            },
+            "openmp": {
+                "gaussian_blur": 926,
+                "unsharp_masking": 54,
+                "clahe": 218,
+                "total": 2016
+            },
+            "mpi": {
+                "gaussian_blur": 1402,
+                "unsharp_masking": 182,
+                "clahe": 855,
+                "total": 3256
+            },
+            "cuda": {
+                "gaussian_blur": 180,
+                "unsharp_masking": 54,
+                "clahe": 234,
+                "total": 468
+            }
+        },
+        "15.bmp": {
+            "sequential": {
+                "gaussian_blur": 3899,
+                "unsharp_masking": 1205,
+                "clahe": 2591,
+                "total": 8832
+            },
+            "openmp": {
+                "gaussian_blur": 1145,
+                "unsharp_masking": 63,
+                "clahe": 244,
+                "total": 2524
+            },
+            "mpi": {
+                "gaussian_blur": 1966,
+                "unsharp_masking": 252,
+                "clahe": 1130,
+                "total": 4415
+            },
+            "cuda": {
+                "gaussian_blur": 182,
+                "unsharp_masking": 84,
+                "clahe": 282,
+                "total": 548
+            }
+        },
+        "19.bmp": {
+            "sequential": {
+                "gaussian_blur": 64661,
+                "unsharp_masking": 16731,
+                "clahe": 41595,
+                "total": 137521
+            },
+            "openmp": {
+                "gaussian_blur": 14336,
+                "unsharp_masking": 694,
+                "clahe": 2772,
+                "total": 32628
+            },
+            "mpi": {
+                "gaussian_blur": 31056,
+                "unsharp_masking": 3683,
+                "clahe": 19014,
+                "total": 68809
+            },
+            "cuda": {
+                "gaussian_blur": 686,
+                "unsharp_masking": 1057,
+                "clahe": 5089,
+                "total": 6832
+            }
+        },
+        "2.bmp": {
+            "sequential": {
+                "gaussian_blur": 996,
+                "unsharp_masking": 352,
+                "clahe": 796,
+                "total": 2423
+            },
+            "openmp": {
+                "gaussian_blur": 331,
+                "unsharp_masking": 26,
+                "clahe": 68,
+                "total": 767
+            },
+            "mpi": {
+                "gaussian_blur": 477,
+                "unsharp_masking": 67,
+                "clahe": 301,
+                "total": 1114
+            },
+            "cuda": {
+                "gaussian_blur": 385,
+                "unsharp_masking": 30,
+                "clahe": 83,
+                "total": 498
+            }
+        },
+        "20.bmp": {
+            "sequential": {
+                "gaussian_blur": 3050,
+                "unsharp_masking": 871,
+                "clahe": 1967,
+                "total": 6705
+            },
+            "openmp": {
+                "gaussian_blur": 955,
+                "unsharp_masking": 45,
+                "clahe": 195,
+                "total": 2062
+            },
+            "mpi": {
+                "gaussian_blur": 1441,
+                "unsharp_masking": 211,
+                "clahe": 819,
+                "total": 3260
+            },
+            "cuda": {
+                "gaussian_blur": 362,
+                "unsharp_masking": 86,
+                "clahe": 235,
+                "total": 683
+            }
+        },
+        "21.bmp": {
+            "sequential": {
+                "gaussian_blur": 3110,
+                "unsharp_masking": 1179,
+                "clahe": 2102,
+                "total": 7238
+            },
+            "openmp": {
+                "gaussian_blur": 987,
+                "unsharp_masking": 50,
+                "clahe": 150,
+                "total": 2001
+            },
+            "mpi": {
+                "gaussian_blur": 1362,
+                "unsharp_masking": 184,
+                "clahe": 869,
+                "total": 3166
+            },
+            "cuda": {
+                "gaussian_blur": 204,
+                "unsharp_masking": 63,
+                "clahe": 240,
+                "total": 507
+            }
+        },
+        "22.bmp": {
+            "sequential": {
+                "gaussian_blur": 763,
+                "unsharp_masking": 241,
+                "clahe": 612,
+                "total": 1814
+            },
+            "openmp": {
+                "gaussian_blur": 273,
+                "unsharp_masking": 16,
+                "clahe": 55,
+                "total": 624
+            },
+            "mpi": {
+                "gaussian_blur": 383,
+                "unsharp_masking": 52,
+                "clahe": 223,
+                "total": 863
+            },
+            "cuda": {
+                "gaussian_blur": 427,
+                "unsharp_masking": 22,
+                "clahe": 79,
+                "total": 528
+            }
+        },
+        "23.bmp": {
+            "sequential": {
+                "gaussian_blur": 3997,
+                "unsharp_masking": 1169,
+                "clahe": 2733,
+                "total": 9002
+            },
+            "openmp": {
+                "gaussian_blur": 1381,
+                "unsharp_masking": 72,
+                "clahe": 268,
+                "total": 2871
+            },
+            "mpi": {
+                "gaussian_blur": 1881,
+                "unsharp_masking": 251,
+                "clahe": 1178,
+                "total": 4398
+            },
+            "cuda": {
+                "gaussian_blur": 354,
+                "unsharp_masking": 80,
+                "clahe": 296,
+                "total": 730
+            }
+        },
+        "24.bmp": {
+            "sequential": {
+                "gaussian_blur": 20637,
+                "unsharp_masking": 6123,
+                "clahe": 13890,
+                "total": 46198
+            },
+            "openmp": {
+                "gaussian_blur": 4640,
+                "unsharp_masking": 314,
+                "clahe": 954,
+                "total": 11344
+            },
+            "mpi": {
+                "gaussian_blur": 9964,
+                "unsharp_masking": 1213,
+                "clahe": 5829,
+                "total": 22557
+            },
+            "cuda": {
+                "gaussian_blur": 977,
+                "unsharp_masking": 437,
+                "clahe": 1457,
+                "total": 2871
+            }
+        },
+        "26.bmp": {
+            "sequential": {
+                "gaussian_blur": 21087,
+                "unsharp_masking": 7172,
+                "clahe": 15158,
+                "total": 49683
+            },
+            "openmp": {
+                "gaussian_blur": 4751,
+                "unsharp_masking": 274,
+                "clahe": 897,
+                "total": 11916
+            },
+            "mpi": {
+                "gaussian_blur": 9687,
+                "unsharp_masking": 1583,
+                "clahe": 6360,
+                "total": 23987
+            },
+            "cuda": {
+                "gaussian_blur": 615,
+                "unsharp_masking": 378,
+                "clahe": 1429,
+                "total": 2422
+            }
+        },
+        "3.bmp": {
+            "sequential": {
+                "gaussian_blur": 4610,
+                "unsharp_masking": 1393,
+                "clahe": 2910,
+                "total": 10200
+            },
+            "openmp": {
+                "gaussian_blur": 1317,
+                "unsharp_masking": 54,
+                "clahe": 249,
+                "total": 2870
+            },
+            "mpi": {
+                "gaussian_blur": 2072,
+                "unsharp_masking": 272,
+                "clahe": 1300,
+                "total": 4806
+            },
+            "cuda": {
+                "gaussian_blur": 329,
+                "unsharp_masking": 90,
+                "clahe": 359,
+                "total": 778
+            }
+        },
+        "30.bmp": {
+            "sequential": {
+                "gaussian_blur": 993,
+                "unsharp_masking": 270,
+                "clahe": 654,
+                "total": 2177
+            },
+            "openmp": {
+                "gaussian_blur": 340,
+                "unsharp_masking": 23,
+                "clahe": 66,
+                "total": 745
+            },
+            "mpi": {
+                "gaussian_blur": 440,
+                "unsharp_masking": 71,
+                "clahe": 288,
+                "total": 1069
+            },
+            "cuda": {
+                "gaussian_blur": 145,
+                "unsharp_masking": 16,
+                "clahe": 68,
+                "total": 229
+            }
+        },
+        "31.bmp": {
+            "sequential": {
+                "gaussian_blur": 138365,
+                "unsharp_masking": 26709,
+                "clahe": 45517,
+                "total": 231353
+            },
+            "openmp": {
+                "gaussian_blur": 14439,
+                "unsharp_masking": 693,
+                "clahe": 2801,
+                "total": 34082
+            },
+            "mpi": {
+                "gaussian_blur": 37692,
+                "unsharp_masking": 4074,
+                "clahe": 20024,
+                "total": 78507
+            },
+            "cuda": {
+                "gaussian_blur": 1494,
+                "unsharp_masking": 1364,
+                "clahe": 5887,
+                "total": 8745
+            }
+        },
+        "32.bmp": {
+            "sequential": {
+                "gaussian_blur": 4644,
+                "unsharp_masking": 1346,
+                "clahe": 3268,
+                "total": 10545
+            },
+            "openmp": {
+                "gaussian_blur": 1474,
+                "unsharp_masking": 80,
+                "clahe": 277,
+                "total": 3144
+            },
+            "mpi": {
+                "gaussian_blur": 2143,
+                "unsharp_masking": 313,
+                "clahe": 1402,
+                "total": 5121
+            },
+            "cuda": {
+                "gaussian_blur": 507,
+                "unsharp_masking": 113,
+                "clahe": 375,
+                "total": 995
+            }
+        },
+        "33.bmp": {
+            "sequential": {
+                "gaussian_blur": 2938,
+                "unsharp_masking": 884,
+                "clahe": 2058,
+                "total": 6717
+            },
+            "openmp": {
+                "gaussian_blur": 933,
+                "unsharp_masking": 61,
+                "clahe": 194,
+                "total": 2018
+            },
+            "mpi": {
+                "gaussian_blur": 1399,
+                "unsharp_masking": 198,
+                "clahe": 970,
+                "total": 3347
+            },
+            "cuda": {
+                "gaussian_blur": 577,
+                "unsharp_masking": 67,
+                "clahe": 236,
+                "total": 880
+            }
+        },
+        "34.bmp": {
+            "sequential": {
+                "gaussian_blur": 14487,
+                "unsharp_masking": 4191,
+                "clahe": 9952,
+                "total": 32388
+            },
+            "openmp": {
+                "gaussian_blur": 3574,
+                "unsharp_masking": 203,
+                "clahe": 741,
+                "total": 8253
+            },
+            "mpi": {
+                "gaussian_blur": 6810,
+                "unsharp_masking": 787,
+                "clahe": 3913,
+                "total": 15325
+            },
+            "cuda": {
+                "gaussian_blur": 484,
+                "unsharp_masking": 235,
+                "clahe": 961,
+                "total": 1680
+            }
+        },
+        "36.bmp": {
+            "sequential": {
+                "gaussian_blur": 28791,
+                "unsharp_masking": 11130,
+                "clahe": 22662,
+                "total": 70852
+            },
+            "openmp": {
+                "gaussian_blur": 6256,
+                "unsharp_masking": 345,
+                "clahe": 1264,
+                "total": 15261
+            },
+            "mpi": {
+                "gaussian_blur": 14669,
+                "unsharp_masking": 1539,
+                "clahe": 7000,
+                "total": 29516
+            },
+            "cuda": {
+                "gaussian_blur": 400,
+                "unsharp_masking": 475,
+                "clahe": 1846,
+                "total": 2721
+            }
+        },
+        "38.bmp": {
+            "sequential": {
+                "gaussian_blur": 621,
+                "unsharp_masking": 226,
+                "clahe": 530,
+                "total": 1556
+            },
+            "openmp": {
+                "gaussian_blur": 193,
+                "unsharp_masking": 12,
+                "clahe": 41,
+                "total": 484
+            },
+            "mpi": {
+                "gaussian_blur": 312,
+                "unsharp_masking": 55,
+                "clahe": 208,
+                "total": 816
+            },
+            "cuda": {
+                "gaussian_blur": 101,
+                "unsharp_masking": 13,
+                "clahe": 55,
+                "total": 169
+            }
+        },
+        "4.bmp": {
+            "sequential": {
+                "gaussian_blur": 67,
+                "unsharp_masking": 23,
+                "clahe": 55,
+                "total": 167
+            },
+            "openmp": {
+                "gaussian_blur": 35,
+                "unsharp_masking": 6,
+                "clahe": 6,
+                "total": 78
+            },
+            "mpi": {
+                "gaussian_blur": 37,
+                "unsharp_masking": 9,
+                "clahe": 24,
+                "total": 92
+            },
+            "cuda": {
+                "gaussian_blur": 77,
+                "unsharp_masking": 4,
+                "clahe": 6,
+                "total": 87
+            }
+        },
+        "40.bmp": {
+            "sequential": {
+                "gaussian_blur": 1228,
+                "unsharp_masking": 373,
+                "clahe": 922,
+                "total": 2845
+            },
+            "openmp": {
+                "gaussian_blur": 380,
+                "unsharp_masking": 56,
+                "clahe": 78,
+                "total": 895
+            },
+            "mpi": {
+                "gaussian_blur": 563,
+                "unsharp_masking": 94,
+                "clahe": 400,
+                "total": 1375
+            },
+            "cuda": {
+                "gaussian_blur": 103,
+                "unsharp_masking": 25,
+                "clahe": 105,
+                "total": 233
+            }
+        },
+        "42.bmp": {
+            "sequential": {
+                "gaussian_blur": 616,
+                "unsharp_masking": 196,
+                "clahe": 427,
+                "total": 1463
+            },
+            "openmp": {
+                "gaussian_blur": 188,
+                "unsharp_masking": 17,
+                "clahe": 52,
+                "total": 472
+            },
+            "mpi": {
+                "gaussian_blur": 285,
+                "unsharp_masking": 50,
+                "clahe": 185,
+                "total": 680
+            },
+            "cuda": {
+                "gaussian_blur": 97,
+                "unsharp_masking": 11,
+                "clahe": 44,
+                "total": 152
+            }
+        },
+        "43.bmp": {
+            "sequential": {
+                "gaussian_blur": 1056,
+                "unsharp_masking": 329,
+                "clahe": 794,
+                "total": 2476
+            },
+            "openmp": {
+                "gaussian_blur": 356,
+                "unsharp_masking": 30,
+                "clahe": 63,
+                "total": 786
+            },
+            "mpi": {
+                "gaussian_blur": 502,
+                "unsharp_masking": 78,
+                "clahe": 334,
+                "total": 1197
+            },
+            "cuda": {
+                "gaussian_blur": 96,
+                "unsharp_masking": 21,
+                "clahe": 85,
+                "total": 202
+            }
+        },
+        "45.bmp": {
+            "sequential": {
+                "gaussian_blur": 824,
+                "unsharp_masking": 276,
+                "clahe": 599,
+                "total": 1926
+            },
+            "openmp": {
+                "gaussian_blur": 287,
+                "unsharp_masking": 29,
+                "clahe": 61,
+                "total": 660
+            },
+            "mpi": {
+                "gaussian_blur": 404,
+                "unsharp_masking": 59,
+                "clahe": 259,
+                "total": 950
+            },
+            "cuda": {
+                "gaussian_blur": 95,
+                "unsharp_masking": 16,
+                "clahe": 70,
+                "total": 181
+            }
+        },
+        "46.bmp": {
+            "sequential": {
+                "gaussian_blur": 965,
+                "unsharp_masking": 298,
+                "clahe": 684,
+                "total": 2209
+            },
+            "openmp": {
+                "gaussian_blur": 303,
+                "unsharp_masking": 18,
+                "clahe": 68,
+                "total": 707
+            },
+            "mpi": {
+                "gaussian_blur": 455,
+                "unsharp_masking": 67,
+                "clahe": 296,
+                "total": 1077
+            },
+            "cuda": {
+                "gaussian_blur": 88,
+                "unsharp_masking": 19,
+                "clahe": 76,
+                "total": 183
+            }
+        },
+        "47.bmp": {
+            "sequential": {
+                "gaussian_blur": 9599,
+                "unsharp_masking": 2887,
+                "clahe": 7084,
+                "total": 22089
+            },
+            "openmp": {
+                "gaussian_blur": 2268,
+                "unsharp_masking": 108,
+                "clahe": 445,
+                "total": 5352
+            },
+            "mpi": {
+                "gaussian_blur": 4607,
+                "unsharp_masking": 630,
+                "clahe": 3007,
+                "total": 10787
+            },
+            "cuda": {
+                "gaussian_blur": 205,
+                "unsharp_masking": 192,
+                "clahe": 805,
+                "total": 1202
+            }
+        },
+        "5.bmp": {
+            "sequential": {
+                "gaussian_blur": 2038,
+                "unsharp_masking": 622,
+                "clahe": 1503,
+                "total": 4714
+            },
+            "openmp": {
+                "gaussian_blur": 646,
+                "unsharp_masking": 37,
+                "clahe": 109,
+                "total": 1393
+            },
+            "mpi": {
+                "gaussian_blur": 979,
+                "unsharp_masking": 146,
+                "clahe": 646,
+                "total": 2319
+            },
+            "cuda": {
+                "gaussian_blur": 110,
+                "unsharp_masking": 42,
+                "clahe": 166,
+                "total": 318
+            }
+        },
+        "50.bmp": {
+            "sequential": {
+                "gaussian_blur": 2638,
+                "unsharp_masking": 820,
+                "clahe": 1935,
+                "total": 6098
+            },
+            "openmp": {
+                "gaussian_blur": 803,
+                "unsharp_masking": 54,
+                "clahe": 121,
+                "total": 1721
+            },
+            "mpi": {
+                "gaussian_blur": 1322,
+                "unsharp_masking": 178,
+                "clahe": 819,
+                "total": 3021
+            },
+            "cuda": {
+                "gaussian_blur": 121,
+                "unsharp_masking": 53,
+                "clahe": 220,
+                "total": 394
+            }
+        },
+        "6.bmp": {
+            "sequential": {
+                "gaussian_blur": 3090,
+                "unsharp_masking": 780,
+                "clahe": 1959,
+                "total": 6560
+            },
+            "openmp": {
+                "gaussian_blur": 854,
+                "unsharp_masking": 56,
+                "clahe": 169,
+                "total": 1809
+            },
+            "mpi": {
+                "gaussian_blur": 1282,
+                "unsharp_masking": 195,
+                "clahe": 807,
+                "total": 2981
+            },
+            "cuda": {
+                "gaussian_blur": 117,
+                "unsharp_masking": 53,
+                "clahe": 218,
+                "total": 388
+            }
+        },
+        "9.bmp": {
+            "sequential": {
+                "gaussian_blur": 2521,
+                "unsharp_masking": 771,
+                "clahe": 1759,
+                "total": 5732
+            },
+            "openmp": {
+                "gaussian_blur": 818,
+                "unsharp_masking": 47,
+                "clahe": 110,
+                "total": 1681
+            },
+            "mpi": {
+                "gaussian_blur": 1212,
+                "unsharp_masking": 169,
+                "clahe": 736,
+                "total": 2783
+            },
+            "cuda": {
+                "gaussian_blur": 118,
+                "unsharp_masking": 52,
+                "clahe": 194,
+                "total": 364
+            }
+        },
+        "sample1.bmp": {
+            "sequential": {
+                "gaussian_blur": 16807,
+                "unsharp_masking": 4811,
+                "clahe": 11129,
+                "total": 36994
+            },
+            "openmp": {
+                "gaussian_blur": 3804,
+                "unsharp_masking": 205,
+                "clahe": 807,
+                "total": 9105
+            },
+            "mpi": {
+                "gaussian_blur": 8158,
+                "unsharp_masking": 1032,
+                "clahe": 4810,
+                "total": 18260
+            },
+            "cuda": {
+                "gaussian_blur": 294,
+                "unsharp_masking": 326,
+                "clahe": 1247,
+                "total": 1867
+            }
+        },
+        "test.bmp": {
+            "sequential": {
+                "gaussian_blur": 297,
+                "unsharp_masking": 100,
+                "clahe": 240,
+                "total": 718
+            },
+            "openmp": {
+                "gaussian_blur": 91,
+                "unsharp_masking": 14,
+                "clahe": 23,
+                "total": 250
+            },
+            "mpi": {
+                "gaussian_blur": 164,
+                "unsharp_masking": 22,
+                "clahe": 115,
+                "total": 388
+            },
+            "cuda": {
+                "gaussian_blur": 92,
+                "unsharp_masking": 6,
+                "clahe": 30,
+                "total": 128
+            }
+        },
+        "tree.bmp": {
+            "sequential": {
+                "gaussian_blur": 553,
+                "unsharp_masking": 172,
+                "clahe": 400,
+                "total": 1274
+            },
+            "openmp": {
+                "gaussian_blur": 188,
+                "unsharp_masking": 18,
+                "clahe": 50,
+                "total": 464
+            },
+            "mpi": {
+                "gaussian_blur": 269,
+                "unsharp_masking": 52,
+                "clahe": 173,
+                "total": 644
+            },
+            "cuda": {
+                "gaussian_blur": 90,
+                "unsharp_masking": 12,
+                "clahe": 44,
+                "total": 146
+            }
+        }
+    }
+}
