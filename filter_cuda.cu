@@ -628,10 +628,10 @@ int main(int argc, char* argv[]) {
 
             if(strcmp("unsharp_clahe", argv[2]) == 0) {
                 cout << "Applying unsharp masking followed by CLAHE..." << endl;
-                unsharp_cuda(output, input, &size, N, scaled_sigma, alpha, outfile, 8, 2.0);
+                unsharp_cuda(output, input, &size, N, scaled_sigma, alpha, outfile, 8, 1.0);
             } else {
                 cout << "Applying unsharp masking..." << endl;
-                unsharp_cuda(output, input, &size, N, scaled_sigma, alpha, outfile, 8, 2.0);
+                unsharp_cuda(output, input, &size, N, scaled_sigma, alpha, outfile, 8, 1.0);
             }
         }
         else if(strcmp("clahe", argv[2]) == 0) {

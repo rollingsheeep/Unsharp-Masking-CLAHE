@@ -68,8 +68,8 @@ void convolve_omp(unsigned char*** out, unsigned char*** in, ImageSize* size, in
 void gaussian_omp(double k[][11], int N, double sigma);
 void gaussian_filter_omp(unsigned char*** out, unsigned char*** in, ImageSize* size, int N, double sigma);
 void unsharp_omp(unsigned char*** out, unsigned char*** in, ImageSize* size, int N, double sigma, double alpha, 
-                const char* output_filename, int clahe_tile_size = 8, double clahe_clip_limit = 2.0);
-void applyCLAHE_omp(unsigned char*** output, unsigned char*** input, ImageSize* size, int tileSize = 8, double clipLimit = 2.0);
+                const char* output_filename, int clahe_tile_size = 8, double clahe_clip_limit = 1.0);
+void applyCLAHE_omp(unsigned char*** output, unsigned char*** input, ImageSize* size, int tileSize = 8, double clipLimit = 1.0);
 
 // Parallel convolution implementation
 void convolve_omp(unsigned char*** out, unsigned char*** in, ImageSize* size, int N, double kernel[][11]) {

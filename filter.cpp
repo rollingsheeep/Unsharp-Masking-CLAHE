@@ -37,7 +37,7 @@ void convolve(unsigned char*** out, unsigned char*** in, ImageSize* size, int N,
 void gaussian(double k[][11], int N, double sigma);
 void gaussian_filter(unsigned char*** out, unsigned char*** in, ImageSize* size, int N, double sigma);
 void unsharp(unsigned char*** out, unsigned char*** in, ImageSize* size, int N, double sigma, double alpha,
-            const char* output_filename, int clahe_tile_size = 8, double clahe_clip_limit = 2.0);
+            const char* output_filename, int clahe_tile_size = 8, double clahe_clip_limit = 1.0);
 void applyCLAHE(unsigned char*** output, unsigned char*** input, ImageSize* size, int tileSize, double clipLimit);
 
 //============================Do not change code in main()======================

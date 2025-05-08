@@ -618,10 +618,10 @@ int main(int argc, char* argv[]) {
 
             if(strcmp("unsharp_clahe", argv[2]) == 0) {
                 if (rank == 0) cout << "Applying unsharp masking followed by CLAHE..." << endl;
-                unsharp_mpi(output, input, &size, N, scaled_sigma, alpha, outfile, 8, 2.0, rank, num_procs);
+                unsharp_mpi(output, input, &size, N, scaled_sigma, alpha, outfile, 8, 1.0, rank, num_procs);
             } else {
                 if (rank == 0) cout << "Applying unsharp masking..." << endl;
-                unsharp_mpi(output, input, &size, N, scaled_sigma, alpha, outfile, 8, 2.0, rank, num_procs);
+                unsharp_mpi(output, input, &size, N, scaled_sigma, alpha, outfile, 8, 1.0, rank, num_procs);
             }
         }
         else if(strcmp("clahe", argv[2]) == 0) {
